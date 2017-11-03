@@ -12,8 +12,14 @@ $font-path: "../assets/fonts";
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-$text-color:        #000;
-$background-color:  #fff;
+$text-color:        #fff;
+$background-color:  #303030;
+$toolbar-background: #7b1fa2;
+
+// Formato de los Tabs
+$tabs-background: #7b1fa2;
+$tabs-tab-color-active: #ccc;
+$tabs-tab-color-inactive: #000;
 
 
 // Named Color Variables
