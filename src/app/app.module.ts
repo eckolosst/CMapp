@@ -1,4 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
@@ -13,6 +14,7 @@ import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
+import { Section } from '../providers/providers';
 import { MyApp } from './app.component';
 
 // The translate loader needs to know where to load i18n files
@@ -43,6 +45,7 @@ export function provideSettings(storage: Storage) {
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -59,6 +62,7 @@ export function provideSettings(storage: Storage) {
   ],
   providers: [
     Api,
+    Section,
     Items,
     User,
     Camera,

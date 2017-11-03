@@ -1,19 +1,28 @@
 import { Component } from '@angular/core';
-import { IonicPage, ModalController, NavController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
-import { Item } from '../../models/item';
-import { Items } from '../../providers/providers';
+import { Seccion } from '../../models/seccion';
+import { Section } from '../../providers/cm-api/section'
 
 @IonicPage()
 @Component({
   selector: 'page-list-master',
-  templateUrl: 'list-master.html'
+  templateUrl: 'list-master.html',
+  providers: [Section]
 })
 export class ListMasterPage {
-  currentItems: Item[];
+  secciones: Seccion[];
 
-  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
-    this.currentItems = this.items.query();
+  constructor(public navCtrl: NavController, private _service : Section) {
+    this._service.getListaSecciones().subscribe(
+        result =>{
+            console.log(result);
+            this.secciones = result.secciones;
+        },
+        error =>{
+            console.log(<any>error);
+        }
+    );
   }
 
   /**
@@ -23,30 +32,9 @@ export class ListMasterPage {
   }
 
   /**
-   * Prompt the user to add a new item. This shows our ItemCreatePage in a
-   * modal and then adds the new item to our data source if the user created one.
-   */
-  addItem() {
-    let addModal = this.modalCtrl.create('ItemCreatePage');
-    addModal.onDidDismiss(item => {
-      if (item) {
-        this.items.add(item);
-      }
-    })
-    addModal.present();
-  }
-
-  /**
-   * Delete an item from the list of items.
-   */
-  deleteItem(item) {
-    this.items.delete(item);
-  }
-
-  /**
    * Navigate to the detail page for this item.
    */
-  openItem(item: Item) {
+  openItem(item: Seccion) {
     this.navCtrl.push('ItemDetailPage', {
       item: item
     });
