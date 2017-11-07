@@ -2,19 +2,13 @@
 
   <ion-navbar>
     <ion-title>{{ 'LIST_MASTER_TITLE' | translate }}</ion-title>
-
-    <ion-buttons end>
-      <button ion-button icon-only (click)="addItem()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
 
-<ion-spinner class="spinn" ></ion-spinner>
+<ion-spinner class="spinn" *ngIf="secciones==null"></ion-spinner>
 
   <ion-list>
     <ion-item-sliding *ngFor="let seccion of secciones">
