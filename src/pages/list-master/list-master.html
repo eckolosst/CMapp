@@ -13,9 +13,7 @@
 </ion-header>
 
 <ion-content>
-
-<ion-spinner class="spinn" ></ion-spinner>
-
+<ion-spinner class="spinn" *ngIf="secciones == null"></ion-spinner>
   <ion-list>
     <ion-item-sliding *ngFor="let seccion of secciones">
       <button ion-item (click)="openItem(seccion)">
@@ -23,4 +21,9 @@
       </button>
     </ion-item-sliding>
   </ion-list>
+  <ion-fab>
+    <button ion-fab mini [navPush]="loginPage">
+      <ion-icon name="person"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Observable';
-import { Seccion } from '../../models/seccion';
 import { GLOBAL } from '../../global';
 
 @Injectable()

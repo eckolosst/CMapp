@@ -4,6 +4,8 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { Seccion } from '../../models/seccion';
 import { Section } from '../../providers/cm-api/section'
 
+import { LoginPage } from '../pages';
+
 @IonicPage()
 @Component({
   selector: 'page-list-master',
@@ -12,7 +14,7 @@ import { Section } from '../../providers/cm-api/section'
 })
 export class ListMasterPage {
   secciones: Seccion[];
-
+  loginPage = LoginPage;
   constructor(public navCtrl: NavController, private _service : Section) {
     this._service.getListaSecciones().subscribe(
         result =>{
@@ -24,6 +26,7 @@ export class ListMasterPage {
         }
     );
   }
+
   openItem(seccion: Seccion) {
     this.navCtrl.push('ItemDetailPage', {
       seccion: seccion
