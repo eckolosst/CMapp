@@ -1,17 +1,20 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ seccion.titulo }}</ion-title>
+    <ion-title>{{seccion.titulo}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
-  <!-- <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + item.profilePic + ')'">
-  </div> -->
-
-  <div class="item-detail">
-    <div id="contenidoX" class="contenido">
-    </div>
+  <div class="content">
+      <div class="item-detail">
+        <div class="contenido" >
+            <h3 class="titulo">
+                  {{ seccion.titulo }}
+            </h3>
+            <div [innerHTML]="contenido"></div>
+        </div>
+      </div>
   </div>
 </ion-content>

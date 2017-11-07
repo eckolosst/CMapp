@@ -15,5 +15,6 @@ export class ItemDetailPage implements OnInit{
   }
 
   ngOnInit():void{
+    this.contenido = this.seccion.contenido;
   }
 }
