@@ -14,22 +14,13 @@
 
 <ion-content>
 
-  <ion-list>
-    <ion-item-sliding *ngFor="let item of secciones">
-      <button ion-item (click)="openItem(item)">
-        <ion-avatar item-start>
-          <img [src]="item.profilePic" />
-        </ion-avatar>
-        <h2>{{item.titulo}}</h2>
-        <p>{{item.titulo}}</p>
-        <ion-note item-end *ngIf="item.note">{{item.contenido}}</ion-note>
-      </button>
+<ion-spinner class="spinn" ></ion-spinner>
 
-      <ion-item-options>
-        <button ion-button color="danger" (click)="deleteItem(item)">
-          {{ 'DELETE_BUTTON' | translate }}
-        </button>
-      </ion-item-options>
+  <ion-list>
+    <ion-item-sliding *ngFor="let seccion of secciones">
+      <button ion-item (click)="openItem(seccion)">
+        <h2>{{seccion.titulo}}</h2>
+      </button>
     </ion-item-sliding>
   </ion-list>
 </ion-content>

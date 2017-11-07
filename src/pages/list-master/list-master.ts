@@ -24,19 +24,15 @@ export class ListMasterPage {
         }
     );
   }
+  openItem(seccion: Seccion) {
+    this.navCtrl.push('ItemDetailPage', {
+      seccion: seccion
+    });
+  }
 
   /**
    * The view loaded, let's query our items for the list
    */
   ionViewDidLoad() {
-  }
-
-  /**
-   * Navigate to the detail page for this item.
-   */
-  openItem(item: Seccion) {
-    this.navCtrl.push('ItemDetailPage', {
-      item: item
-    });
   }
 }
