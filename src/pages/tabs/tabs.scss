@@ -1,3 +1,43 @@
 page-tabs {
+  .tab-button-text{
+    color: black;
+  }
+  .tabbar, .tabs-ios, .tabs-md , .tabs-wp{
+        .tab-button-icon {
+            background-repeat:no-repeat;
+            background-position:center;
+            height:24px;
+            width:24px;
+            background-size:contain;
+            -webkit-background-size: contain;
+            -moz-background-size: contain;
+            -o-background-size: contain;
+            color: black;
+        }
+    }
+    .tabs-ios {
+      a[aria-selected=false]{
+         .tab-button-icon[ng-reflect-name='shield'], .tab-button-icon[aria-label='shield'] {
+          background-image: url(../../assets/ic_b.png);
+        }
+      }
+     a[aria-selected=true] {
+        .tab-button-icon[ng-reflect-name='shield'], .tab-button-icon[aria-label='shield'] {
+          background-image: url(../../assets/ic_w.png);
+        }
+      }
+    }
 
+    .tabs-md {
+      a[aria-selected=false]{
+         .tab-button-icon[ng-reflect-name='shield'], .tab-button-icon[aria-label='shield'] {
+           background-image: url(../../assets/ic_b.png);
+        }
+      }
+     a[aria-selected=true] {
+        .tab-button-icon[ng-reflect-name='shield'], .tab-button-icon[aria-label='shield'] {
+          background-image: url(../../assets/ic_w.png);
+        }
+      }
+    }
 }

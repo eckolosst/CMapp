@@ -4,9 +4,10 @@
   "EMAIL": "Email",
   "LOGIN": "Iniciar sesión",
   "SIGNUP": "Registrarse",
+  "CANCEL": "Cancelar",
 
-  "TAB1_TITLE": "Items",
-  "TAB2_TITLE": "Buscar",
+  "TAB1_TITLE": "Temas",
+  "TAB2_TITLE": "Seguridad",
   "TAB3_TITLE": "Ajustes",
 
   "MAP_TITLE": "Mapa",
@@ -20,6 +21,8 @@
 
   "TUTORIAL_SLIDE3_TITLE": "Empezando",
   "TUTORIAL_SLIDE3_DESCRIPTION": "¿Necesitas ayuda? Échale un vistazo al README del Super Starter para ver el tutorial completo.",
+
+  "WELCOME_INTRO": "Registrate o inicia seción para poder acceder a la funcionalidad extra",
 
   "SETTINGS_TITLE": "Ajustes",
   "SETTINGS_OPTION1": "Opción 1",

@@ -9,7 +9,7 @@ import { Seccion } from '../../models/seccion';
 })
 export class ItemDetailPage implements OnInit{
   seccion: Seccion;
-  contenidoX: String;
+  contenido: String;
   constructor(public navCtrl: NavController, navParams: NavParams) {
       this.seccion = navParams.get('seccion');
   }

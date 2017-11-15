@@ -7,9 +7,10 @@
   "PASSWORD": "Password",
   "LOGIN": "Sign in",
   "SIGNUP": "Sign up",
+  "CANCEL": "Cancel",
 
   "TAB1_TITLE": "Items",
-  "TAB2_TITLE": "Search",
+  "TAB2_TITLE": "Security",
   "TAB3_TITLE": "Settings",
 
   "MAP_TITLE": "Map",
@@ -28,7 +29,7 @@
 
   "TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
 
-  "WELCOME_INTRO": "The starting point for your next great Ionic app",
+  "WELCOME_INTRO": "You must register or log in to access the extra functionality",
 
   "SETTINGS_TITLE": "Settings",
   "SETTINGS_OPTION1": "Option 1",

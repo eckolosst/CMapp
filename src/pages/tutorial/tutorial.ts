@@ -51,10 +51,7 @@ export class TutorialPage {
   }
 
   startApp() {
-    this.navCtrl.setRoot(MainPage, {}, {
-      animate: true,
-      direction: 'forward'
-    });
+    this.navCtrl.setRoot(MainPage);
   }
 
   onSlideChangeStart(slider) {
