@@ -4,7 +4,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { Seccion } from '../../models/seccion';
 import { Section } from '../../providers/cm-api/section'
 
-import { LoginPage } from '../pages';
+import { WelcomePage } from '../pages';
 
 @IonicPage()
 @Component({
@@ -15,7 +15,6 @@ import { LoginPage } from '../pages';
 export class ListMasterPage {
   secciones: Seccion[];
   slides: String[];
-  loginPage = LoginPage;
 
   constructor(public navCtrl: NavController, private _service : Section) {
     this._service.getListaSecciones().subscribe(
@@ -39,6 +38,10 @@ export class ListMasterPage {
     this.navCtrl.push('ItemDetailPage', {
       seccion: seccion
     });
+  }
+
+  goLogReg() {
+    this.navCtrl.setRoot(WelcomePage);
   }
 
   /**

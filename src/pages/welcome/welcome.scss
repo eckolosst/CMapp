@@ -43,4 +43,18 @@ page-welcome {
       background-color: rgb(220, 220, 220);
     }
   }
+
+  button.cancel {
+    margin-top: 25px !important;
+    background-color: #f44336;
+    color: #333;
+
+    &.activated {
+      background-color: rgb(220, 220, 220);
+    }
+
+    &:hover {
+      background-color: #f44336 !important;
+    }
+  }
 }
