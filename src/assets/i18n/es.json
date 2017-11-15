@@ -8,7 +8,7 @@
 
   "TAB1_TITLE": "Temas",
   "TAB2_TITLE": "Seguridad",
-  "TAB3_TITLE": "Ajustes",
+  "TAB3_TITLE": "Más",
 
   "MAP_TITLE": "Mapa",
 
@@ -24,13 +24,6 @@
 
   "WELCOME_INTRO": "Registrate o inicia seción para poder acceder a la funcionalidad extra",
 
-  "SETTINGS_TITLE": "Ajustes",
-  "SETTINGS_OPTION1": "Opción 1",
-  "SETTINGS_OPTION2": "Opción 2",
-  "SETTINGS_OPTION3": "Opción 3",
-  "SETTINGS_OPTION4": "Opción 4",
-
-  "SETTINGS_PAGE_PROFILE": "Editar Perfil",
 
   "WELCOME_TITLE": "Bienvenido/a",
 
@@ -48,5 +41,7 @@
 
   "CARDS_TITLE": "Social",
 
-  "SEARCH_TITLE": "Buscar"
+  "SECURITY_TITLE": "Seguridad",
+
+  "MORE_TITLE": "Más"
 }

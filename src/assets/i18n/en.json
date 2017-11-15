@@ -11,7 +11,7 @@
 
   "TAB1_TITLE": "Items",
   "TAB2_TITLE": "Security",
-  "TAB3_TITLE": "Settings",
+  "TAB3_TITLE": "More",
 
   "MAP_TITLE": "Map",
 
@@ -30,16 +30,6 @@
   "TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
 
   "WELCOME_INTRO": "You must register or log in to access the extra functionality",
-
-  "SETTINGS_TITLE": "Settings",
-  "SETTINGS_OPTION1": "Option 1",
-  "SETTINGS_OPTION2": "Option 2",
-  "SETTINGS_OPTION3": "Option 3",
-  "SETTINGS_OPTION4": "Option 4",
-
-  "SETTINGS_PROFILE_BUTTON": "Edit Profile",
-
-  "SETTINGS_PAGE_PROFILE": "Edit Profile",
 
   "WELCOME_TITLE": "Welcome",
 
@@ -64,6 +54,7 @@
 
   "CARDS_TITLE": "Social",
 
-  "SEARCH_TITLE": "Search",
-  "SEARCH_PLACEHOLDER": "Search the items list, e.g. \"Donald Duck\""
+  "SECURITY_TITLE": "Security",
+
+  "MORE_TITLE": "More"
 }
