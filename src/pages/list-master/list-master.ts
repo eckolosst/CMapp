@@ -14,6 +14,8 @@ import { WelcomePage } from '../pages';
 })
 export class ListMasterPage {
   secciones: Seccion[];
+  slides: String[];
+
   constructor(public navCtrl: NavController, private _service : Section) {
     this._service.getListaSecciones().subscribe(
         result =>{
@@ -24,6 +26,12 @@ export class ListMasterPage {
             console.log(<any>error);
         }
     );
+
+    this.slides = [
+      "../../assets/img/s1.png",
+      "../../assets/img/s2.png",
+      "../../assets/img/s3.png"
+    ]
   }
 
   openItem(seccion: Seccion) {
