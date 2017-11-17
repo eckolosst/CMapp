@@ -2,7 +2,8 @@ page-list-master {
   ion-spinner{
     width: 75px;
     height: 75px;
-    margin: 1em auto 0px 1em;
+    display: block;
+    margin: 35% auto auto auto;
   }
 
   ion-fab{
@@ -14,7 +15,6 @@ page-list-master {
     height: 30%;
   }
 
-  ion-slide{
-    // background-color: purple;
-  }
+  ion-slide img{
+    
 }

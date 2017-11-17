@@ -1,6 +1,6 @@
 {
   "name": "CMapp",
-  "app_id": "",
+  "app_id": "34c0b906",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
