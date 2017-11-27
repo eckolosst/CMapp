@@ -3,21 +3,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-more',
-  templateUrl: 'more.html',
+  selector: 'page-commentary',
+  templateUrl: 'commentary.html',
 })
-export class MorePage {
+export class CommentaryPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-
   }
 
-  goTestimony() {
-    console.log("equisde");
-    this.navCtrl.push('ContactUsPage');
+  sendComment(){
+    
   }
-
 }

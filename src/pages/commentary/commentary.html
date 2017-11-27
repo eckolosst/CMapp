@@ -1,0 +1,32 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>commentary</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (submit)="sendComment()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Ingresá tu nombre</ion-label>
+        <ion-input type="text" name="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Ingresá tu email</ion-label>
+        <ion-input type="email" name="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-textarea placeholder="Comentario"></ion-textarea>
+      </ion-item>
+
+      <div padding>
+        <button ion-button color="primary" block>Enviar</button>
+      </div>
+    </ion-list>
+
+  </form>
+</ion-content>
