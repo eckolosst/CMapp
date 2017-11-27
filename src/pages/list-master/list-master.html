@@ -8,7 +8,7 @@
 
 <ion-content>
 <ion-spinner class="spinn" *ngIf="secciones == null"></ion-spinner>
-
+<div *ngIf="secciones != null">
   <ion-slides loop pager autoplay="5000" speed="700">
     <ion-slide *ngFor="let slide of slides">
       <img [src]="slide" class="slide-image"/>
@@ -22,9 +22,10 @@
       </button>
     </ion-item-sliding>
   </ion-list>
-  <ion-fab>
-    <button ion-fab mini (click)="goLogReg()">
-      <ion-icon name="person"></ion-icon>
-    </button>
-  </ion-fab>
+</div>
+<ion-fab>
+  <button ion-fab mini (click)="goLogReg()">
+    <ion-icon name="person"></ion-icon>
+  </button>
+</ion-fab>
 </ion-content>

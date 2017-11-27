@@ -3,10 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-more',
-  templateUrl: 'more.html',
+  selector: 'page-contact-us',
+  templateUrl: 'contact-us.html',
 })
-export class MorePage {
+export class ContactUsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -15,9 +15,8 @@ export class MorePage {
 
   }
 
-  goTestimony() {
-    console.log("equisde");
-    this.navCtrl.push('ContactUsPage');
+  goCommentary(){
+    this.navCtrl.push('CommentaryPage');
   }
 
 }

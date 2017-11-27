@@ -4,7 +4,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { Seccion } from '../../models/seccion';
 import { Section } from '../../providers/cm-api/section'
 
-import { WelcomePage } from '../pages';
+import { WelcomePage } from '../welcome/welcome';
 
 @IonicPage()
 @Component({
