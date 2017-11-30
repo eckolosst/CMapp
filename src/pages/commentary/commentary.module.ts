@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
 import { CommentaryPage } from './commentary';
 
@@ -8,6 +9,7 @@ import { CommentaryPage } from './commentary';
   ],
   imports: [
     IonicPageModule.forChild(CommentaryPage),
+    TranslateModule.forChild()
   ],
 })
 export class CommentaryPageModule {}

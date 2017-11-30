@@ -18,16 +18,16 @@ export class LoginPage {
   };
 
   // Our translated text strings
-  private loginErrorString: string;
+  // private loginErrorString: string;
 
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
     public translateService: TranslateService) {
 
-    this.translateService.get('LOGIN_ERROR').subscribe((value) => {
-      this.loginErrorString = value;
-    })
+    // this.translateService.get('LOGIN_ERROR').subscribe((value) => {
+    //   this.loginErrorString = value;
+    // })
   }
 
   // Attempt to login in through our User service

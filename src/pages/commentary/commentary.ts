@@ -21,9 +21,6 @@ export class CommentaryPage {
     private _mailService: MailService
   ){}
 
-  ionViewDidLoad() {
-  }
-
   sendComment(){
     var comentario = new Comment(this.name, this.email, this.comment);
     this._mailService.sendMail(comentario).subscribe(
