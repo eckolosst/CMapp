@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>commentary</ion-title>
+    <ion-title>{{ 'COMMENTARY_TITLE' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -19,7 +19,7 @@
         <ion-label floating>Ingresá tu email</ion-label>
         <ion-input type="email" name="email"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item id="comentario">
         <ion-textarea placeholder="Comentario"></ion-textarea>
       </ion-item>
 
