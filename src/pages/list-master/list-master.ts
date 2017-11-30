@@ -41,7 +41,7 @@ export class ListMasterPage {
   }
 
   goLogReg() {
-    this.navCtrl.setRoot(WelcomePage);
+    this.navCtrl.setRoot('WelcomePage');
   }
 
   /**
