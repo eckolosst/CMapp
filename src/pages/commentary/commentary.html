@@ -13,18 +13,18 @@
     <ion-list>
       <ion-item>
         <ion-label floating>Ingresá tu nombre</ion-label>
-        <ion-input type="text" name="name" [(ngModel)]="name"></ion-input>
+        <ion-input type="text" [(ngModel)]="comentario.name" [formControl]="nameFC"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Ingresá tu email</ion-label>
-        <ion-input type="email" name="email" [(ngModel)]="email"></ion-input>
+        <ion-input type="email" name="email" [(ngModel)]="comentario.email" [formControl]="emailFC"></ion-input>
       </ion-item>
-      <ion-itemid="comentario">
-        <ion-textarea placeholder="Comentario" [(ngModel)]="comment"></ion-textarea>
+      <ion-item id="comentario">
+        <ion-textarea placeholder="Comentario" name="text" [(ngModel)]="comentario.text"></ion-textarea>
       </ion-item>
 
       <div padding>
-        <button ion-button color="primary" block>Enviar</button>
+        <button ion-button color="primary" block [disabled]="nameFC.invalid || emailFC.invalid">Enviar</button>
       </div>
     </ion-list>
 

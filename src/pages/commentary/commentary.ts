@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { MailService } from '../../providers/cm-api/mail.service';
 import { Comment } from '../../models/comment';
+import { FormControl, Validators } from '@angular/forms';
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 @IonicPage()
 @Component({
@@ -10,25 +13,35 @@ import { Comment } from '../../models/comment';
   providers: [MailService]
 })
 export class CommentaryPage {
-
-  name: String;
-  email: String;
-  comment: String;
+  public comentario: Comment;
+  public nameFC: FormControl;
+  public emailFC: FormControl;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private _mailService: MailService
-  ){}
+    private _mailService: MailService,
+    public toastCtrl: ToastController
+  ){
+    this.comentario = new Comment ("","","");
+    this.nameFC = new FormControl('',[Validators.required]);
+    this.emailFC = new FormControl('',[Validators.required, Validators.pattern(EMAIL_REGEX)]);
+  }
 
   sendComment(){
-    var comentario = new Comment(this.name, this.email, this.comment);
-    this._mailService.sendMail(comentario).subscribe(
+    var comment = this.comentario;
+    let toast = this.toastCtrl.create({
+      message: 'Comentario enviado! (:',
+      duration: 2000
+    });
+    this._mailService.sendMail(comment).subscribe(
       result =>{
-
+        toast.present();
+        this.navCtrl.pop();
       },
       error =>{
-          console.log(<any>error);
+        toast.setMessage('Lo sentimos, el comentario no pudo ser enviado ):');
+        console.log("error al enviar mail:",<any>error);
       }
     );
   }

@@ -13,7 +13,8 @@ export class MailService{
   }
 
   sendMail(comment){
+    let param = JSON.stringify(comment);
     let headers = new Headers({"Content-Type":"application/json"});
-    return this._http.post(this.url+"/sendMail",comment,{headers: headers}).map(res => res.json());
+    return this._http.post(this.url+"/sendMail",param,{headers: headers}).map(res => res.json());
   }
 }
