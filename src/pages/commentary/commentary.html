@@ -1,0 +1,32 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'COMMENTARY_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (submit)="sendComment()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Ingresá tu nombre</ion-label>
+        <ion-input type="text" [(ngModel)]="comentario.name" [formControl]="nameFC"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Ingresá tu email</ion-label>
+        <ion-input type="email" name="email" [(ngModel)]="comentario.email" [formControl]="emailFC"></ion-input>
+      </ion-item>
+      <ion-item id="comentario">
+        <ion-textarea placeholder="Comentario" name="text" [(ngModel)]="comentario.text"></ion-textarea>
+      </ion-item>
+
+      <div padding>
+        <button ion-button color="primary" block [disabled]="nameFC.invalid || emailFC.invalid">Enviar</button>
+      </div>
+    </ion-list>
+
+  </form>
+</ion-content>

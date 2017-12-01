@@ -11,3 +11,6 @@ export const Tab2Root = 'SecurityPage';
 export const Tab3Root = 'MorePage';
 
 export const WelcomePage = 'WelcomePage';
+
+export const ContactUsPage = 'ContactUsPage';
+export const CommentaryPage = 'CommentaryPage';

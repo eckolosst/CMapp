@@ -4,7 +4,6 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { Seccion } from '../../models/seccion';
 import { Section } from '../../providers/cm-api/section'
 
-import { WelcomePage } from '../pages';
 
 @IonicPage()
 @Component({
@@ -41,7 +40,7 @@ export class ListMasterPage {
   }
 
   goLogReg() {
-    this.navCtrl.setRoot(WelcomePage);
+    this.navCtrl.setRoot('WelcomePage');
   }
 
   /**
