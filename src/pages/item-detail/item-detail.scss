@@ -31,4 +31,14 @@ page-item-detail {
   ol, ul{
       padding-left: 15px !important;
   }
+
+  iframe{
+    display: block;
+    margin:auto;
+  }
+
+  img{
+    display: block;
+    margin:auto;    
+  }
 }
