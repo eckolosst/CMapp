@@ -15,6 +15,10 @@ export class MorePage {
 
   }
 
+  goLlamanos(){
+    this.navCtrl.push("LlamanosPage");
+  }
+
   goTestimony() {
     this.navCtrl.push('ContactUsPage');
   }
