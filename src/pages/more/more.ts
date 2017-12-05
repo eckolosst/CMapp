@@ -16,8 +16,14 @@ export class MorePage {
   }
 
   goTestimony() {
-    console.log("equisde");
     this.navCtrl.push('ContactUsPage');
   }
 
+  goMumala() {
+    this.navCtrl.push('MumalaPage');
+  }
+
+  goCiudadMujer() {
+    this.navCtrl.push('CiudadMujerPage');
+  }
 }

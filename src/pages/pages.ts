@@ -14,3 +14,5 @@ export const WelcomePage = 'WelcomePage';
 
 export const ContactUsPage = 'ContactUsPage';
 export const CommentaryPage = 'CommentaryPage';
+export const MumalaPage = 'MumalaPage';
+export const CiudadMujerPage = 'CiudadMujerPage';
