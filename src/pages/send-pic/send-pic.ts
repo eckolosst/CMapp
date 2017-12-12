@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+// import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-// import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+
 
 @IonicPage()
 @Component({
@@ -9,25 +11,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SendPicPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // const options : CameraOptions = {
-    //   quality: 100,
-    //   encodingType: this.camera.EncodingType.JPEG,
-    //   mediaType: this.camera.MediaType.PICTURE,
-    //   destinationType: this.camera.DestinationType.DATA_URL
-    // }
-  }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private camera: Camera ) {  }
 
-  /*this.camera.getPicture(options).then((imageData) => {
-    // imageData is either a base64 encoded string or a file URI
-    // If it's base64:
-    let base64Image = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-    // Handle error
-  });*/
+    takePicture() {
+      const options : CameraOptions = {
+        quality: 100,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        destinationType: this.camera.DestinationType.DATA_URL
+      }
 
-  ionViewDidLoad() {
+      this.camera.getPicture(options).then((imageData) => {
+        // imageData is either a base64 encoded string or a file URI
+        let base64Image = 'data:image/jpeg;base64,' + imageData;
+      },(err) => {
+        console.log(err);
+      });
+    }
 
-  }
-
+    sendPicture(){
+      
+    }
 }

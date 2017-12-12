@@ -20,7 +20,8 @@ export class LoginPage {
   // Our translated text strings
   // private loginErrorString: string;
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
     public translateService: TranslateService) {

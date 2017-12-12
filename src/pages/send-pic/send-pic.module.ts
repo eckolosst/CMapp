@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
 import { SendPicPage } from './send-pic';
 
@@ -8,6 +9,7 @@ import { SendPicPage } from './send-pic';
   ],
   imports: [
     IonicPageModule.forChild(SendPicPage),
+    TranslateModule.forChild()
   ],
 })
 export class SendPicPageModule {}

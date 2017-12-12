@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 
@@ -16,8 +17,11 @@ import { CallNumber } from '@ionic-native/call-number';
 })
 export class LlamanosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              private callNumber: CallNumber) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private callNumber: CallNumber,
+    public translateService: TranslateService) {
   }
 
   ionViewDidLoad() {

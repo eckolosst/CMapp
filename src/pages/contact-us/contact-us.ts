@@ -19,4 +19,8 @@ export class ContactUsPage {
     this.navCtrl.push('CommentaryPage');
   }
 
+  goSendPic(){
+    this.navCtrl.push('SendPicPage');
+  }
+
 }

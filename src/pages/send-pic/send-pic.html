@@ -1,18 +1,19 @@
-<!--
-  Generated template for the SendPicPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>sendPic</ion-title>
+    <ion-title>{{ 'SEND-PIC_TITLE' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <button ion-button (click)="takePicture()">Tomar una foto</button>
+    <div *ngIf="base64Image">
+      <span>Ultima foto tomada:</span>
+      <img [src]="base64Image"/>
+      <br>
+      <button ion-button (click)="sendPicture()">Enviar</button>
+    </div>
 
 </ion-content>
