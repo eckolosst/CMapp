@@ -25,10 +25,20 @@ page-item-detail {
   }
 
   a{
-      color: #f44336;
+      color: #e07b7b;
   }
 
   ol, ul{
       padding-left: 15px !important;
+  }
+
+  iframe{
+    display: block;
+    margin:auto;
+  }
+
+  img{
+    display: block;
+    margin:auto;
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Seccion } from '../../models/seccion';
 
 @IonicPage()
@@ -9,12 +10,13 @@ import { Seccion } from '../../models/seccion';
 })
 export class ItemDetailPage implements OnInit{
   seccion: Seccion;
-  contenido: String;
-  constructor(public navCtrl: NavController, navParams: NavParams) {
+  contenido;
+  constructor(public navCtrl: NavController, navParams: NavParams, private sanitizer: DomSanitizer) {
       this.seccion = navParams.get('seccion');
   }
 
   ngOnInit():void{
-    this.contenido = this.seccion.contenido;
+    let st = (this.seccion.contenido).toString();
+    this.contenido = this.sanitizer.bypassSecurityTrustHtml(st);
   }
 }

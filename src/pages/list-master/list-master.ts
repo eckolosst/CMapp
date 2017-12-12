@@ -15,7 +15,7 @@ export class ListMasterPage {
   secciones: Seccion[];
   slides: String[];
 
-  constructor(public navCtrl: NavController, private _service : Section) {
+  constructor(public navCtrl: NavController, private _service : Section ) {
     this._service.getListaSecciones().subscribe(
         result =>{
             console.log(result);
