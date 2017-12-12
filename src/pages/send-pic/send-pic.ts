@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+// import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @IonicPage()
 @Component({
@@ -9,13 +9,13 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 })
 export class SendPicPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
-    const options : CameraOptions = {
-      quality: 100,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      destinationType: this.camera.DestinationType.DATA_URL
-    }
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    // const options : CameraOptions = {
+    //   quality: 100,
+    //   encodingType: this.camera.EncodingType.JPEG,
+    //   mediaType: this.camera.MediaType.PICTURE,
+    //   destinationType: this.camera.DestinationType.DATA_URL
+    // }
   }
 
   /*this.camera.getPicture(options).then((imageData) => {

@@ -1,8 +1,24 @@
 page-more {
-  .card-md{
+  .card-md, .card-ios{
     background-color: #606060;
   }
   .card-header{
     color: #fff;
   }
+
+    .buttons {
+        background-repeat:no-repeat;
+        background-position:center;
+        height:24px;
+        width:24px;
+        background-size:contain;
+        -webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+    }
+
+    .buttons[ng-reflect-name='mumala'], .buttons[aria-label='mumala'] {
+      background-image: url(../../assets/logoMuma2.png);
+    }
+
 }
