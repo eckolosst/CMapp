@@ -10,6 +10,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
   templateUrl: 'send-pic.html',
 })
 export class SendPicPage {
+  public base64Image;
 
   constructor(
     public navCtrl: NavController,
@@ -26,13 +27,13 @@ export class SendPicPage {
 
       this.camera.getPicture(options).then((imageData) => {
         // imageData is either a base64 encoded string or a file URI
-        let base64Image = 'data:image/jpeg;base64,' + imageData;
+        this.base64Image = 'data:image/jpeg;base64,' + imageData;
       },(err) => {
         console.log(err);
       });
     }
 
     sendPicture(){
-      
+      console.log("Todo joya, adentro de sendPicture");
     }
 }
