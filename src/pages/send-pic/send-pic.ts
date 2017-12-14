@@ -29,7 +29,7 @@ export class SendPicPage {
         // imageData is either a base64 encoded string or a file URI
         this.base64Image = 'data:image/jpeg;base64,' + imageData;
       },(err) => {
-        console.log(err);
+        console.log("Error: ",err);
       });
     }
 
