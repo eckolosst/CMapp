@@ -51,16 +51,12 @@ export class TutorialPage {
   }
 
   startApp() {
-<<<<<<< HEAD
     // this.navCtrl.setRoot(MainPage);
     this.navCtrl.setRoot('WelcomePage', {}, {
       animate: true,
       direction: 'forward'
     });
-=======
-    this.navCtrl.setRoot('MainPage');
->>>>>>> a9a89b25253332c98b2325ef8f047d2f57234e8f
-  }
+}
 
   onSlideChangeStart(slider) {
     this.showSkip = !slider.isEnd();
