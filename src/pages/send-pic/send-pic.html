@@ -9,7 +9,8 @@
 
 <ion-content padding>
     <button ion-button (click)="takePicture()">Tomar una foto</button>
-    <div>
+    <br>
+    <div *ngIf="base64Image">
       <span>Ultima foto tomada:</span>
       <img src={{base64Image}}/>
       <br>
