@@ -27,9 +27,9 @@ export class ListMasterPage {
     );
 
     this.slides = [
-      "../../assets/img/s1.png",
-      "../../assets/img/s2.png",
-      "../../assets/img/s3.png"
+      "assets/img/s1.png",
+      "assets/img/s2.png",
+      "assets/img/s3.png"
     ]
   }
 
