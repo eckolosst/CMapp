@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-// import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { MailService } from '../../providers/cm-api/mail.service';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
 
@@ -8,6 +8,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 @Component({
   selector: 'page-send-pic',
   templateUrl: 'send-pic.html',
+  providers: [MailService]
 })
 export class SendPicPage {
   public base64Image;
@@ -15,7 +16,9 @@ export class SendPicPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private camera: Camera ) {  }
+    private camera: Camera,
+    private _mailService: MailService,
+    public toastCtrl: ToastController ) {  }
 
     takePicture() {
       const options : CameraOptions = {
@@ -34,6 +37,20 @@ export class SendPicPage {
     }
 
     sendPicture(){
-      console.log("Todo joya, adentro de sendPicture");
+      var pic = this.base64Image;
+      let toast = this.toastCtrl.create({
+        message: 'Foto enviado! (:',
+        duration: 2000
+      });
+      this._mailService.sendMail(pic).subscribe(
+        result =>{
+          toast.present();
+          this.navCtrl.pop();
+        },
+        error =>{
+          toast.setMessage('Lo sentimos, la foto no pudo ser enviado ):');
+          console.log("error al enviar mail:",<any>error);
+        }
+      );
     }
 }

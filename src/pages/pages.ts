@@ -12,9 +12,9 @@ export const Tab3Root = 'MorePage';
 
 export const WelcomePage = 'WelcomePage';
 
-export const ContactUsPage = 'ContactUsPage';
-export const CommentaryPage = 'CommentaryPage';
-export const SendPicPage = 'SendPicPage';
-export const MumalaPage = 'MumalaPage';
-export const CiudadMujerPage = 'CiudadMujerPage';
-export const LlamanosPage = 'LlamanosPage';
+// export const ContactUsPage = 'ContactUsPage';
+// export const CommentaryPage = 'CommentaryPage';
+// export const SendPicPage = 'SendPicPage';
+// export const MumalaPage = 'MumalaPage';
+// export const CiudadMujerPage = 'CiudadMujerPage';
+// export const LlamanosPage = 'LlamanosPage';

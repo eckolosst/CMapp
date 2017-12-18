@@ -23,4 +23,7 @@ export class ContactUsPage {
     this.navCtrl.push('SendPicPage');
   }
 
+  goTestimony(){
+    this.navCtrl.push('SendTestimonyPage');
+  }
 }
