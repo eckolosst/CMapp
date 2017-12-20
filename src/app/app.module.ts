@@ -10,6 +10,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
+import { Media } from '@ionic-native/media';
+import { File } from '@ionic-native/file';
 
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
@@ -50,6 +52,8 @@ export function createTranslateLoader(http: HttpClient) {
     User,
     Camera,
     CallNumber,
+    Media,
+    File,
     SplashScreen,
     StatusBar,
     // Keep this to enable Ionic's runtime error handling during development

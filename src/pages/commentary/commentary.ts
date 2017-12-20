@@ -41,6 +41,7 @@ export class CommentaryPage {
       },
       error =>{
         toast.setMessage('Lo sentimos, el comentario no pudo ser enviado ):');
+        toast.present();
         console.log("error al enviar mail:",<any>error);
       }
     );
