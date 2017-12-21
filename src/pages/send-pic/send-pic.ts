@@ -49,7 +49,7 @@ export class SendPicPage {
         },
         error =>{
           toast.setMessage('Lo sentimos, la foto no pudo ser enviado ):');
-          console.log("error al enviar mail:",<any>error);
+          console.error(error);
         }
       );
     }

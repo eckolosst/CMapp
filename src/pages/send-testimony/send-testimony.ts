@@ -22,15 +22,13 @@ export class SendTestimonyPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private mediaCapture: MediaCapture
-  ) {
-
-  }
+  ) {}
 
   rec(){
     let options: CaptureAudioOptions = {limit:1, duration: 120};
     this.mediaCapture.captureAudio(options).then(
       (data: MediaFile[]) => this.audio = data,
-      (err: CaptureError) => console.log(err)
+      (err: CaptureError) => console.log(err.code)
     );
   }
 }
