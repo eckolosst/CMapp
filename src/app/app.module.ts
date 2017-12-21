@@ -10,7 +10,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
-import { MediaCapture } from '@ionic-native/media-capture';
+import { Media } from '@ionic-native/media';
+import { File } from '@ionic-native/file';
 
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
@@ -55,7 +56,8 @@ export function provideSettings(storage: Storage) {
     User,
     Camera,
     CallNumber,
-    MediaCapture,
+    Media,
+    File,
     SplashScreen,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
