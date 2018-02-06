@@ -34,21 +34,24 @@ export class ContactUsPage {
     public toastCtrl: ToastController,
     private mediaCapture: Media
   ){
-    this.comentario = new Comment ("","","");
+    this.comentario = new Comment ("","","","","","");
     this.nameFC = new FormControl('',[Validators.required]);
     this.emailFC = new FormControl('',[Validators.required, Validators.pattern(EMAIL_REGEX)]);
   }
 
   sendComment(){
-    var comment = this.comentario;
+    if(this.adjPicture && this.base64Image){ this.comentario.picture = this.base64Image; }
+    // if(this.adjLocation){}
+    // if(this.adjAudio){}
     let toast = this.toastCtrl.create({
       message: 'Comentario enviado! (:',
       duration: 2000
     });
-    this._mailService.sendMail(comment).subscribe(
+    var content = this.comentario;
+    this._mailService.sendMail(content).subscribe(
       result =>{
-        toast.present();
         this.navCtrl.pop();
+        toast.present();
       },
       error =>{
         toast.setMessage('Lo sentimos, el comentario no pudo ser enviado ):');
@@ -68,30 +71,32 @@ export class ContactUsPage {
 
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
-      this.base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.base64Image = imageData;
+      // this.base64Image = 'data:image/jpeg;base64,' + imageData;
     },(err) => {
       console.log("Error: ",err);
     });
   }
-  sendPicture(){
-    let toast = this.toastCtrl.create({
-      message: 'Foto enviado! (:',
-      duration: 2000
-    });
-    this._mailService.sendMailPic(this.base64Image).subscribe(
-      result =>{
-        toast.present();
-        this.navCtrl.pop();
-      },
-      error =>{
-        toast.setMessage('Lo sentimos, la foto no pudo ser enviado ):');
-        toast.present();
-        console.log("error al enviar mail:",<any>error);
-      }
-    );
-  }
 
-  rec(){
+  takeRecord(){
 
   }
+
+  // sendPicture(){
+  //   let toast = this.toastCtrl.create({
+  //     message: 'Foto enviado! (:',
+  //     duration: 2000
+  //   });
+  //   this._mailService.sendMailPic(this.base64Image).subscribe(
+  //     result =>{
+  //       toast.present();
+  //       this.navCtrl.pop();
+  //     },
+  //     error =>{
+  //       toast.setMessage('Lo sentimos, la foto no pudo ser enviado ):');
+  //       toast.present();
+  //       console.log("error al enviar mail:",<any>error);
+  //     }
+  //   );
+  // }
 }

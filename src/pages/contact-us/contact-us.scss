@@ -5,8 +5,23 @@ page-contact-us {
   //   height: 100px;
   //   overflow: hiden;
   // }
-  .center{
+  .audio{
     text-align: center;
+
+    .button{
+      font-size: 20px;
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  .picture{
+    text-align: center;
+
+    .button{
+      font-size: 13px;
+      padding: 5%;
+    }
   }
 
   ion-icon{

@@ -4,18 +4,18 @@ page-tabs {
     color: #000;
 }
   .tabbar, .tabs-ios, .tabs-md{
-        .tab-button-icon {
-            background-repeat:no-repeat;
-            background-position:center;
-            height:24px;
-            width:24px;
-            background-size:contain;
-            -webkit-background-size: contain;
-            -moz-background-size: contain;
-            -o-background-size: contain;
-            color: black;
-        }
+    .tab-button-icon {
+        background-repeat:no-repeat;
+        background-position:center;
+        height:24px;
+        width:24px;
+        background-size:contain;
+        -webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+        color: black;
     }
+  }
     .tabs-ios {
       a[aria-selected=false]{
          .tab-button-icon[ng-reflect-name='shield'], .tab-button-icon[aria-label='shield'] {

@@ -34,14 +34,11 @@
         <ion-label>Adjuntá una foto</ion-label>
         <ion-icon name="camera" item-start></ion-icon>
       </ion-item>
-      <ion-item *ngIf="adjPicture" class="center">
+      <ion-item *ngIf="adjPicture" class="picture">
         <button ion-button (click)="takePicture()">Tomar una foto</button>
         <br>
         <div *ngIf="base64Image">
-          <span>Ultima foto tomada:</span>
           <img src={{base64Image}}/>
-          <br>
-          <button ion-button (click)="sendPicture()">Enviar</button>
         </div>
       </ion-item>
 
@@ -59,9 +56,15 @@
         <ion-label>Adjuntá un audio</ion-label>
         <ion-icon name="mic" item-start></ion-icon>
       </ion-item>
-      <ion-item *ngIf="adjAudio" class="center">
-        <button ion-button (click)="rec()" outline icon-only>
-          <ion-icon name="microphone"></ion-icon>
+      <ion-item *ngIf="adjAudio" class="audio">
+        <button ion-button (click)="rec()" icon-only>
+          <ion-icon name="mic"></ion-icon>
+        </button>
+        <button ion-button  icon-only>
+          <ion-icon name="play"></ion-icon>
+        </button>
+        <button ion-button  icon-only>
+          <ion-icon name="square"></ion-icon>
         </button>
       </ion-item>
 
