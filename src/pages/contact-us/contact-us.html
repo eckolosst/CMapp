@@ -1,3 +1,4 @@
+
 <ion-header>
 
   <ion-navbar>
@@ -7,37 +8,71 @@
 </ion-header>
 
 <ion-content padding>
+  <form (submit)="sendComment()">
+    <ion-list inset>
+      <ion-item>
+        <ion-label floating>Ingresá tu nombre</ion-label>
+        <ion-input type="text" [(ngModel)]="comentario.name" [formControl]="nameFC"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Ingresá tu email</ion-label>
+        <ion-input type="email" name="email" [(ngModel)]="comentario.email" [formControl]="emailFC"></ion-input>
+      </ion-item>
+      <br>
 
-<ion-grid>
-  <ion-row width-50>
-    <ion-col>
-      <button ion-button color="" outline icon-only (click)="goSendPic()">
-        <ion-icon name="camera"></ion-icon>
-      </button>
-      <p>Dejá una foto</p>
-    </ion-col>
-    <ion-col>
-      <button ion-button color="" outline icon-only>
-        <ion-icon name="pin"></ion-icon>
-      </button>
-      <p> Dónde estas?</p>
-    </ion-col>
-  </ion-row>
+      <ion-item >
+        <ion-toggle checked="false" [(ngModel)]="adjComment" name="comment"></ion-toggle>
+        <ion-label>Adjuntá un comentario</ion-label>
+        <ion-icon name="text" item-start></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="adjComment">
+        <ion-textarea placeholder="Comentario" name="text" [(ngModel)]="comentario.text"></ion-textarea>
+      </ion-item>
 
-  <ion-row width-50>
-    <ion-col>
-      <button ion-button color="" outline icon-only (click)="goCommentary()">
-        <ion-icon name="text"></ion-icon>
-      </button>
-      <p>Dejá tu comentario</p>
-    </ion-col>
+      <ion-item >
+        <ion-toggle checked="false" [(ngModel)]="adjPicture" name="picture"></ion-toggle>
+        <ion-label>Adjuntá una foto</ion-label>
+        <ion-icon name="camera" item-start></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="adjPicture" class="picture">
+        <button ion-button type="button" (click)="takePicture()">Tomar una foto</button>
+        <br>
+        <div *ngIf="base64Image">
+          <img src={{base64Image}}/>
+        </div>
+      </ion-item>
 
-    <ion-col>
-      <button ion-button color="" outline icon-only (click)="goTestimony()">
-        <ion-icon name="mic"></ion-icon>
-      </button>
-      <p>Da tu testimonio</p>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+      <ion-item >
+        <ion-toggle checked="false" [(ngModel)]="adjLocation" name="location"></ion-toggle>
+        <ion-label>Adjuntá tu ubicación</ion-label>
+        <ion-icon name="pin" item-start></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="adjLocation">
+        template de location
+      </ion-item>
+
+      <ion-item>
+        <ion-toggle checked="false" [(ngModel)]="adjAudio" name="audio"></ion-toggle>
+        <ion-label>Adjuntá un audio</ion-label>
+        <ion-icon name="mic" item-start></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="adjAudio" class="audio">
+        <button ion-button type="button" (click)="takeRecord()" icon-only>
+          <ion-icon name="mic"></ion-icon>
+        </button>
+        <button ion-button type="button" icon-only>
+          <ion-icon name="play" (click)="play()" ></ion-icon>
+        </button>
+        <button ion-button type="button" icon-only>
+          <ion-icon name="square"></ion-icon>
+        </button>
+      </ion-item>
+
+      <div padding>
+        <button ion-button color="primary" block [disabled]="nameFC.invalid || emailFC.invalid">Enviar</button>
+      </div>
+    </ion-list>
+
+  </form>
+
 </ion-content>
