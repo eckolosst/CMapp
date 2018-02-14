@@ -5,6 +5,7 @@ import { Comment } from '../../models/comment';
 import { FormControl, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Media, MediaObject } from '@ionic-native/media';
+import { File } from '@ionic-native/file';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -23,8 +24,9 @@ export class ContactUsPage {
   public adjPicture: boolean;
   public adjLocation: boolean;
   public adjAudio: boolean;
+  public image;
   public base64Image;
-  public audio;
+  public audioFile: MediaObject;
 
   constructor(
     public navCtrl: NavController,
@@ -32,7 +34,8 @@ export class ContactUsPage {
     private camera: Camera,
     private _mailService: MailService,
     public toastCtrl: ToastController,
-    private mediaCapture: Media
+    private media: Media,
+    private file: File
   ){
     this.comentario = new Comment ("","","","","","");
     this.nameFC = new FormControl('',[Validators.required]);
@@ -40,9 +43,9 @@ export class ContactUsPage {
   }
 
   sendComment(){
-    if(this.adjPicture && this.base64Image){ this.comentario.picture = this.base64Image; }
+    if(this.adjPicture && this.image){ this.comentario.picture = this.image; }
     // if(this.adjLocation){}
-    // if(this.adjAudio){}
+    // if(this.adjAudio){ this.comentario.audio = this.audioFile};
     let toast = this.toastCtrl.create({
       message: 'Comentario enviado! (:',
       duration: 2000
@@ -71,32 +74,26 @@ export class ContactUsPage {
 
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
-      this.base64Image = imageData;
-      // this.base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.image = imageData;
+      this.base64Image = 'data:image/jpeg;base64,' + imageData;
     },(err) => {
       console.log("Error: ",err);
     });
   }
 
   takeRecord(){
+    this.file.createFile(this.file.tempDirectory, 'audio.mp3', true).then(() => {
+      this.audioFile = this.media.create(this.file.tempDirectory.replace(/^this.audioFile:\/\//, '')+'audio.mp3');
+      this.audioFile.startRecord();
+      window.setTimeout(() => this.audioFile.stopRecord(), 10000);
+    });
 
   }
 
-  // sendPicture(){
-  //   let toast = this.toastCtrl.create({
-  //     message: 'Foto enviado! (:',
-  //     duration: 2000
-  //   });
-  //   this._mailService.sendMailPic(this.base64Image).subscribe(
-  //     result =>{
-  //       toast.present();
-  //       this.navCtrl.pop();
-  //     },
-  //     error =>{
-  //       toast.setMessage('Lo sentimos, la foto no pudo ser enviado ):');
-  //       toast.present();
-  //       console.log("error al enviar mail:",<any>error);
-  //     }
-  //   );
-  // }
+  play(){
+    if(this.audioFile){
+      this.audioFile.play;
+    }
+  }
+
 }

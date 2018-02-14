@@ -18,10 +18,4 @@ export class MailService{
     let headers = new Headers({"Content-Type":"application/json"});
     return this._http.post(this.url+"/sendMail",param,{headers: headers}).map(res => res.json());
   }
-  // 
-  // sendMailPic(content){
-  //   let param = JSON.stringify(content);
-  //   let headers = new Headers({"Content-Type":"application/json"});
-  //   return this._http.post(this.url+"/sendMailPic",param,{headers: headers}).map(res => res.json());
-  // }
 }

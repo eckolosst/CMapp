@@ -35,7 +35,7 @@
         <ion-icon name="camera" item-start></ion-icon>
       </ion-item>
       <ion-item *ngIf="adjPicture" class="picture">
-        <button ion-button (click)="takePicture()">Tomar una foto</button>
+        <button ion-button type="button" (click)="takePicture()">Tomar una foto</button>
         <br>
         <div *ngIf="base64Image">
           <img src={{base64Image}}/>
@@ -57,13 +57,13 @@
         <ion-icon name="mic" item-start></ion-icon>
       </ion-item>
       <ion-item *ngIf="adjAudio" class="audio">
-        <button ion-button (click)="rec()" icon-only>
+        <button ion-button type="button" (click)="takeRecord()" icon-only>
           <ion-icon name="mic"></ion-icon>
         </button>
-        <button ion-button  icon-only>
-          <ion-icon name="play"></ion-icon>
+        <button ion-button type="button" icon-only>
+          <ion-icon name="play" (click)="play()" ></ion-icon>
         </button>
-        <button ion-button  icon-only>
+        <button ion-button type="button" icon-only>
           <ion-icon name="square"></ion-icon>
         </button>
       </ion-item>
