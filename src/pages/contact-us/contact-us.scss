@@ -1,17 +1,19 @@
 page-contact-us {
-  // .button{
-  //   font-size: 40px;
-  //   width: 100%;
-  //   height: 100px;
-  //   overflow: hiden;
-  // }
+  ion-spinner{
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: auto;
+  }
+
   .audio{
     text-align: center;
 
     .button{
       font-size: 20px;
-      width: 35px;
-      height: 35px;
+      width: 50px;
+      height: 50px;
+      border-radius: 40px;
     }
   }
 
@@ -30,7 +32,7 @@ page-contact-us {
 
   p{
     margin-top: 0px;
-    text-align: center;
+    font-size: 120%;
   }
 
 }
