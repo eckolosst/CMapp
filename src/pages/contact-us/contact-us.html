@@ -20,9 +20,11 @@
       </ion-item>
       <br>
 
+      <p>Adjuntá algo a tu comentario:</p>
+
       <ion-item >
         <ion-toggle checked="false" [(ngModel)]="adjComment" name="comment"></ion-toggle>
-        <ion-label>Adjuntá un comentario</ion-label>
+        <ion-label>Un comentario</ion-label>
         <ion-icon name="text" item-start></ion-icon>
       </ion-item>
       <ion-item *ngIf="adjComment">
@@ -31,7 +33,7 @@
 
       <ion-item >
         <ion-toggle checked="false" [(ngModel)]="adjPicture" name="picture"></ion-toggle>
-        <ion-label>Adjuntá una foto</ion-label>
+        <ion-label>Una foto</ion-label>
         <ion-icon name="camera" item-start></ion-icon>
       </ion-item>
       <ion-item *ngIf="adjPicture" class="picture">
@@ -42,21 +44,22 @@
         </div>
       </ion-item>
 
-      <ion-item >
+      <!-- <ion-item >
         <ion-toggle checked="false" [(ngModel)]="adjLocation" name="location"></ion-toggle>
-        <ion-label>Adjuntá tu ubicación</ion-label>
+        <ion-label>Tu ubicación</ion-label>
         <ion-icon name="pin" item-start></ion-icon>
       </ion-item>
       <ion-item *ngIf="adjLocation">
         template de location
-      </ion-item>
+      </ion-item> -->
 
       <ion-item>
         <ion-toggle checked="false" [(ngModel)]="adjAudio" name="audio"></ion-toggle>
-        <ion-label>Adjuntá un audio</ion-label>
+        <ion-label>Un audio</ion-label>
         <ion-icon name="mic" item-start></ion-icon>
       </ion-item>
       <ion-item *ngIf="adjAudio" class="audio">
+<<<<<<< HEAD
         <button type="button" ion-button (click)="rec()" icon-only>
           <ion-icon name="mic"></ion-icon>
         </button>
@@ -65,11 +68,26 @@
         </button>
         <button type="button" ion-button  icon-only>
           <ion-icon name="square"></ion-icon>
+=======
+        <button ion-button ion-long-press type="button" [interval]="400" (onPressStart)="takeRecord()" (onPressEnd)="stopRecord()">
+          <ion-icon name="mic"></ion-icon>
+        </button>
+        <button ion-button type="button" (click)="play()" [disabled]="audioFile == null" icon-only>
+          <ion-icon name="play"></ion-icon>
+        </button>
+        <button ion-button type="button" (click)="pause()" [disabled]="audioFile == null" icon-only>
+          <ion-icon name="pause"></ion-icon>
+>>>>>>> 8e6f6256d97676b6b998bd23bfaeaecb51888e60
         </button>
       </ion-item>
 
       <div padding>
+<<<<<<< HEAD
         <button type="submit" ion-button color="primary" block [disabled]="nameFC.invalid || emailFC.invalid">Enviar</button>
+=======
+        <button *ngIf="!enviando" type="submit" ion-button color="primary" block [disabled]="nameFC.invalid || emailFC.invalid">Enviar</button>
+        <ion-spinner class="spinn" *ngIf="enviando"></ion-spinner>
+>>>>>>> 8e6f6256d97676b6b998bd23bfaeaecb51888e60
       </div>
     </ion-list>
 
