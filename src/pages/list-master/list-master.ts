@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-
+import { NativeStorage } from '@ionic-native/native-storage';
 import { Seccion } from '../../models/seccion';
 import { Section } from '../../providers/cm-api/section'
 
@@ -11,14 +11,18 @@ import { Section } from '../../providers/cm-api/section'
   templateUrl: 'list-master.html',
   providers: [Section]
 })
-export class ListMasterPage {
+export class ListMasterPage{
   secciones: Seccion[];
   slides: String[];
+  public identity;
 
-  constructor(public navCtrl: NavController, private _service : Section ) {
+  constructor(
+    public navCtrl: NavController,
+    private _service : Section,
+    private nativeStorage: NativeStorage ) {
+
     this._service.getListaSecciones().subscribe(
         result =>{
-            console.log(result);
             this.secciones = result.secciones;
         },
         error =>{
@@ -33,6 +37,18 @@ export class ListMasterPage {
     ]
   }
 
+  ionViewWillEnter(){
+    this.nativeStorage.getItem('identity')
+      .then(
+        data => {
+          this.identity = data != undefined;
+        },
+        error => {
+          this.identity = false;
+        }
+    );
+  }
+
   openItem(seccion: Seccion) {
     this.navCtrl.push('ItemDetailPage', {
       seccion: seccion
@@ -40,12 +56,7 @@ export class ListMasterPage {
   }
 
   goLogReg() {
-    this.navCtrl.setRoot('WelcomePage');
+    this.navCtrl.push('WelcomePage');
   }
 
-  /**
-   * The view loaded, let's query our items for the list
-   */
-  ionViewDidLoad() {
-  }
 }

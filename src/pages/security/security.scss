@@ -1,3 +1,36 @@
 page-security {
+  #map_canvas{
+    position: fixed;
+    height: 50%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    transition: opacity 150ms ease-in
+ }
+ #map_canvas.show-map {
+     opacity: 1;
+   }
 
+   ion-app._gmaps_cdv_ .nav-decor{
+     background-color: transparent !important;
+   }
+
+   .show-map {
+     opacity: 1;
+   }
+
+   ion-spinner{
+     width: 150px;
+     height: 150px;
+     display: block;
+     margin: 35% auto auto auto;
+   }
+
+   ion-content, ion-footer{
+     background-color: #303030
+   }
+
+   .instrucciones{
+     color: white;
+   }
 }

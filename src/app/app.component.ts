@@ -3,7 +3,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
-import { FirstRunPage } from '../pages/pages';
+import { FirstRunPage, MainPage } from '../pages/pages';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @Component({
   template: `
@@ -18,12 +20,29 @@ export class MyApp {
     private translate: TranslateService, platform: Platform,
     private config: Config,
     private statusBar: StatusBar,
-    private splashScreen: SplashScreen) {
+    private splashScreen: SplashScreen,
+    private nativeStorage: NativeStorage,
+    private screenOrientation: ScreenOrientation) {
+
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    this.screenOrientation.unlock();
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      console.log("iniciando")
+      // // Verifica si ya fue visto el tutorial
+      // this.nativeStorage.getItem('visto')
+      //   .then(
+      //     data => {
+      //       if(data)
+      //         this.rootPage = FirstRunPage;
+      //       else
+      //         this.rootPage = MainPage;
+      //     },
+      //     error => console.error("error", error)
+      // );
     });
     this.initTranslate();
   }

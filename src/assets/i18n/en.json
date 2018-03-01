@@ -18,14 +18,14 @@
   "TUTORIAL_SKIP_BUTTON": "Skip",
   "TUTORIAL_CONTINUE_BUTTON": "Continue",
 
-  "TUTORIAL_SLIDE1_TITLE": "Welcome to the Ionic Super Starter",
-  "TUTORIAL_SLIDE1_DESCRIPTION": "The <b>Ionic Super Starter</b> is a fully-featured Ionic starter with many pre-built pages and best practices.",
+  "TUTORIAL_SLIDE1_TITLE": "Bienvenida a Ciudad Mujer",
+  "TUTORIAL_SLIDE1_DESCRIPTION": "En esta APP podrás encontrar información útil para prevenir la Violencia de Género.",
 
-  "TUTORIAL_SLIDE2_TITLE": "How to use the Super Starter",
-  "TUTORIAL_SLIDE2_DESCRIPTION": "Assemble the various page types you want and remove the ones you don't. We've provided many common mobile app page layouts, like login and signup pages, tabs, and this tutorial page.",
+  "TUTORIAL_SLIDE2_TITLE": "Informate",
+  "TUTORIAL_SLIDE2_DESCRIPTION": "Encontrarás distintas secciones informativas para que sepas más sobre la problematica de la Violencia de Género.",
 
-  "TUTORIAL_SLIDE3_TITLE": "Getting Started",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "Need help? Check out the Super Starter README for a full tutorial",
+  "TUTORIAL_SLIDE3_TITLE": "Sentite Segura",
+  "TUTORIAL_SLIDE3_DESCRIPTION": "Podrás compartir tu ubicación y destino a tus grupos de confianza para que realicen el seguimiento de tu recorrido via web.",
 
   "TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
 
