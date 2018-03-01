@@ -37,7 +37,7 @@
         <ion-icon name="camera" item-start></ion-icon>
       </ion-item>
       <ion-item *ngIf="adjPicture" class="picture">
-        <button ion-button type="button" (click)="takePicture()">Tomar una foto</button>
+        <button type="button" ion-button (click)="takePicture()">Tomar una foto</button>
         <br>
         <div *ngIf="base64Image">
           <img src={{base64Image}}/>
@@ -59,6 +59,16 @@
         <ion-icon name="mic" item-start></ion-icon>
       </ion-item>
       <ion-item *ngIf="adjAudio" class="audio">
+<<<<<<< HEAD
+        <button type="button" ion-button (click)="rec()" icon-only>
+          <ion-icon name="mic"></ion-icon>
+        </button>
+        <button type="button" ion-button  icon-only>
+          <ion-icon name="play"></ion-icon>
+        </button>
+        <button type="button" ion-button  icon-only>
+          <ion-icon name="square"></ion-icon>
+=======
         <button ion-button ion-long-press type="button" [interval]="400" (onPressStart)="takeRecord()" (onPressEnd)="stopRecord()">
           <ion-icon name="mic"></ion-icon>
         </button>
@@ -67,12 +77,17 @@
         </button>
         <button ion-button type="button" (click)="pause()" [disabled]="audioFile == null" icon-only>
           <ion-icon name="pause"></ion-icon>
+>>>>>>> 8e6f6256d97676b6b998bd23bfaeaecb51888e60
         </button>
       </ion-item>
 
       <div padding>
+<<<<<<< HEAD
+        <button type="submit" ion-button color="primary" block [disabled]="nameFC.invalid || emailFC.invalid">Enviar</button>
+=======
         <button *ngIf="!enviando" type="submit" ion-button color="primary" block [disabled]="nameFC.invalid || emailFC.invalid">Enviar</button>
         <ion-spinner class="spinn" *ngIf="enviando"></ion-spinner>
+>>>>>>> 8e6f6256d97676b6b998bd23bfaeaecb51888e60
       </div>
     </ion-list>
 

@@ -12,8 +12,12 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 import { Media } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { GoogleMaps } from '@ionic-native/google-maps';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
-import { User } from '../providers/providers';
+import { UserService } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { Section } from '../providers/providers';
 import { MyApp } from './app.component';
@@ -44,7 +48,7 @@ export function provideSettings(storage: Storage) {
       }
     }),
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,12 +56,16 @@ export function provideSettings(storage: Storage) {
   ],
   providers: [
     Api,
+    ScreenOrientation,
+    LocationAccuracy,
     Section,
-    User,
+    NativeStorage,
+    UserService,
     Camera,
     CallNumber,
     Media,
     File,
+    GoogleMaps,
     SplashScreen,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },

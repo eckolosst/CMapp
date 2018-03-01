@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 import { MainPage } from '../pages';
 
@@ -16,7 +17,23 @@ import { MainPage } from '../pages';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController) { }
+  public identity;
+
+  constructor(
+    public navCtrl: NavController,
+    private nativeStorage: NativeStorage) { }
+
+  ionViewWillEnter(){
+
+    this.nativeStorage.getItem('identity')
+      .then(
+        data => {
+          if(data != undefined)
+            this.navCtrl.pop();
+        },
+        error => {console.error(error)}
+    );
+  }
 
   login() {
     this.navCtrl.push('LoginPage');
@@ -27,6 +44,6 @@ export class WelcomePage {
   }
 
   cancel(){
-    this.navCtrl.setRoot(MainPage);
+    this.navCtrl.pop();
   }
 }

@@ -7,5 +7,18 @@
 </ion-header>
 
 <ion-content>
-  <h1 style="text-align:center">PROXIMAMENTE</h1>
+  <ion-spinner class="spinn" *ngIf="map == null"></ion-spinner>
+  <div id="map_canvas"></div>
 </ion-content>
+<ion-footer no-shadow padding>
+  <div class="instrucciones">
+    Arrastrá el marcador AZUL para indicar tu lugar de Destino. Luego presioná el siguiente botón para activar el seguimiento.
+  </div>
+  <div class="aviso text-center">
+    <!-- <button ion-button block upercase color="danger" (click)="panico()">Botón Antipánico</button> -->
+    {{data}}
+  </div>
+  <div></div>
+  <button *ngIf="!activado" secondary ion-button block  upercase color="danger" (click)="activar()">Activar Seguridad</button>
+  <button *ngIf="activado" secondary ion-button block  upercase color="danger" (click)="desactivar()">Desactivar Seguridad</button>
+</ion-footer>
