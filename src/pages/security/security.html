@@ -8,17 +8,19 @@
 
 <ion-content>
   <ion-spinner class="spinn" *ngIf="map == null"></ion-spinner>
+  <div class="instrucciones" *ngIf="map != null">
+    Arrastrá el marcador AZUL para indicar tu lugar de Destino. Luego presioná el siguiente botón para activar el seguimiento.
+    <div class="aviso text-center">
+      <!-- <button ion-button block upercase color="danger" (click)="panico()">Botón Antipánico</button> -->
+      {{data}}
+    </div>
+
+    <button *ngIf="!activado" secondary ion-button block button upercase color="danger" (click)="activar()">Activar Seguridad</button>
+    <button *ngIf="activado" secondary ion-button block button upercase color="danger" (click)="desactivar()">Desactivar Seguridad</button>
+  </div>
   <div id="map_canvas"></div>
 </ion-content>
-<ion-footer no-shadow padding>
-  <div class="instrucciones">
-    Arrastrá el marcador AZUL para indicar tu lugar de Destino. Luego presioná el siguiente botón para activar el seguimiento.
-  </div>
-  <div class="aviso text-center">
-    <!-- <button ion-button block upercase color="danger" (click)="panico()">Botón Antipánico</button> -->
-    {{data}}
-  </div>
-  <div></div>
-  <button *ngIf="!activado" secondary ion-button block  upercase color="danger" (click)="activar()">Activar Seguridad</button>
-  <button *ngIf="activado" secondary ion-button block  upercase color="danger" (click)="desactivar()">Desactivar Seguridad</button>
-</ion-footer>
+<!-- <ion-footer no-shadow padding>
+
+
+</ion-footer> -->
