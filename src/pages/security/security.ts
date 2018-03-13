@@ -10,9 +10,12 @@ import {
  GoogleMap,
  GoogleMapsEvent,
  GoogleMapOptions,
- CameraPosition,
- MarkerOptions,
- Marker
+ Environment
+ // CameraPosition,
+ // MarkerOptions,
+ // Marker,
+ // Polyline,
+ // PolylineOptions
 } from '@ionic-native/google-maps';
 
 @IonicPage()
@@ -47,6 +50,7 @@ export class SecurityPage {
   ) {}
 
   ionViewWillEnter(){
+   this.data = ""
    this.nativeStorage.getItem('identity')
      .then(
        data => {
@@ -82,13 +86,13 @@ export class SecurityPage {
           lat: -38.9516100,
           lng: -68.0591000
         },
-        zoom: 12,
+        zoom: 13,
         tilt: 0 // inclinacion
       },
     };
 // GoogleMaps.create('canvas', mapOptions);
     this.map = GoogleMaps.create('map_canvas', mapOptions);
-
+    Environment.setBackgroundColor('#303030');
     // Wait the MAP_READY before using any methods.
     this.map.one(GoogleMapsEvent.MAP_READY)
     .then(() => {
@@ -104,14 +108,19 @@ export class SecurityPage {
   getPosition(): void{
     this.map.getMyLocation({enableHighAccuracy: true})
     .then(response => {
-      // Localocación actual
+      // Localización actual
       this.latO = response.latLng.lat;
       this.lngO = response.latLng.lng;
       this.latD = response.latLng.lat + 0.007;
       this.lngD = response.latLng.lng + 0.007;
       this.map.addMarker({
         title: 'Destino',
-        icon: 'blue',
+        icon: {
+          'url': 'assets/img/destino.png',
+          'size': {
+            width: 27,
+            height: 42}
+        },
         animation: 'DROP',
         position: {
           lat: this.latD,
@@ -125,7 +134,12 @@ export class SecurityPage {
       );
       this.map.addMarker({
         title: 'Origen',
-        icon: 'green',
+        icon: {
+          'url': 'assets/img/origen.png',
+          'size': {
+            width: 27,
+            height: 42}
+        },
         animation: 'DROP',
         position: response.latLng,
         draggable: true
@@ -134,6 +148,15 @@ export class SecurityPage {
           this.mOrigen = marker;
           this.st.newTimer('timer', 5);
         	this.timerId = this.st.subscribe('timer', () => this.actualizaOrigen());
+
+          marker.one(GoogleMapsEvent.MARKER_DRAG)
+          .then(() => {
+            // Now you can use all methods safely.
+            this.getPosition();
+          })
+          .catch(error =>{
+            console.log(error);
+          });
         }
       );
       this.map.moveCamera({
@@ -154,37 +177,48 @@ export class SecurityPage {
       if( this.latO != response.latLng.lat || this.lngO != response.latLng.lng){
         this.latO = response.latLng.lat;
         this.lngO = response.latLng.lng;
-        this.map.moveCamera({
-          target: {
-            lat: (this.latO + this.latD)/2,
-            lng: (this.lngO + this.lngD)/2
-          }
-        });
+
         this.mOrigen.setPosition(response.latLng)
       }
     })
     .catch(error =>{
       console.log("Ubicación deshabilitada: " + error);
+      this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+         if(canRequest) {
+           this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+             (d) => {},
+             error => console.log('Error al pedir los permiso de ubicación.', error)
+           );
+         }
+       });
     });
   }
 
   activar(){
+    let id = this.infoUsr._id;
     var data = {
-      origenLat: this.mOrigen.getPosition().lat,
-      origenLng: this.mOrigen.getPosition().lng,
-      destinoLat: this.mDestino.getPosition().lat,
-      destinoLng: this.mDestino.getPosition().lng,
-      camino: this.camino
-    }
-
-    // this._userService.updateSeguimiento(data,this.infoUsr._id).subscribe(
+      seguimiento: [this.mOrigen.getPosition(),this.mDestino.getPosition()]
+    };
+    // this._userService.updateSeguimiento(data,id).subscribe(
     //   response => {
         this.mDestino.setDraggable(false);
         this.mOrigen.setDraggable(false);
         this.st.delTimer('timer');
         this.st2.newTimer('timer2', 10);
-      	this.timerId = this.st2.subscribe('timer2', () => this.agregarRuta());
+      	this.timerId = this.st2.subscribe('timer2', () => this.actualizarRuta());
         this.activado = true;
+
+        // DIBUJA LINEA RECTA DESDE EL ORIGEN HASTA EL DESTINO
+        // this.map.addPolyline({
+        //   points: [
+        //     this.mOrigen.getPosition(),
+        //     this.mDestino.getPosition()
+        //   ],
+        //   'color' : 'black',
+        //   'width': 2,
+        //   'geodesic': true
+        // });
+
     //   },
     //   error => {
     //     this.data = error
@@ -201,46 +235,44 @@ export class SecurityPage {
     this.activado = false;
   }
 
-  agregarRuta(){
+  actualizarRuta(){
     this.map.getMyLocation({enableHighAccuracy: true})
     .then(response => {
-      var last = this.camino.length -1;
-      if(last < 0 || (this.camino[last].getPosition.lat != response.latLng.lat && this.camino[last].getPosition.lng != response.latLng.lng)){
-        this.map.addMarker({
-          title: '',
-          icon: 'red',
-          animation: 'DROP',
-          position: {
-            lat: response.latLng.lat,
-            lng: response.latLng.lng
-          }
-        }).then(
-          marker => {
-            marker.label = (this.camino.length + 1).toString();
-            marker.draggable = false;
-            marker.hora = Date.now()
-            this.camino.push(marker);
-            // var data = {
-            //   origenLat: this.mOrigen.getPosition().lat,
-            //   origenLng: this.mOrigen.getPosition().lng,
-            //   destinoLat: this.mDestino.getPosition().lat,
-            //   destinoLng: this.mDestino.getPosition().lng,
-            //   camino: this.camino
-            // }
-            // this._userService.updateSeguimiento(data,this.infoUsr._id).subscribe(
-            //   response => {
-            //     console.log("Todo OK")
-            //   },
-            //   error => {
-            //     console.error(error)
-            //   }
-            // )
-          }
-        );;
-      }
+      this.mOrigen.setPosition(response.latLng);
+      console.log(this.latO, this.lngO)
+      this.latO = response.latLng.lat;
+      this.lngO = response.latLng.lng;
+      console.log(this.latO, this.lngO)
+      // var last = this.camino.length -1;
+      // if(last < 0 || (this.camino[last].getPosition.lat != response.latLng.lat && this.camino[last].getPosition.lng != response.latLng.lng)){
+      //   this.map.addMarker({
+      //     title: '',
+      //     icon: 'red',
+      //     animation: 'DROP',
+      //     position: {
+      //       lat: response.latLng.lat,
+      //       lng: response.latLng.lng
+      //     }
+      //   }).then(
+      //     marker => {
+      //       marker.label = (this.camino.length + 1).toString();
+      //       marker.draggable = false;
+      //       marker.hora = Date.now()
+      //       this.camino.push(marker);
+      //     }
+      //   );
+      // }
     })
     .catch(error =>{
       console.log("Ubicación deshabilitada: " + error);
+      this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+         if(canRequest) {
+           this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+             (d) => {},
+             error => console.log('Error al pedir los permiso de ubicación.', error)
+           );
+         }
+       });
     });
   }
 }
