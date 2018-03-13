@@ -5,6 +5,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { WelcomePage } from '../pages';
 import { UserService } from '../../providers/providers'
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
+// import { }
 import {
  GoogleMaps,
  GoogleMap,
