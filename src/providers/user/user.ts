@@ -35,7 +35,7 @@ export class UserService {
   updateSeguimiento(data,id){
     // let params = JSON.stringify(data);
     let headers = new Headers({"Content-Type":"application/json", 'Authorization': this.getToken()});
-    return this._http.put(this.url+"/usuario/"+id,data,{headers: headers}).map(res => res.json());
+    return this._http.put(this.url+"/seguimiento/"+id,data,{headers: headers}).map(res => res.json());
   }
 
   getIdentity(){

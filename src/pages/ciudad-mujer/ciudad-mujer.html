@@ -18,4 +18,15 @@
       {{ 'CM_TITLE' | translate }}
   </h3>
   Inserte aquí descripción de la App
+  <br>
+  <ion-searchbar></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let contacto of listaContactos">
+      <!-- <ion-avatar item-start>
+        <img [src]="contacto.photos[0].value ">
+      </ion-avatar> -->
+      <h2>{{contacto.displayName }}</h2>
+      <p>Dispositivo: {{contacto.phoneNumbers[0].type}} - Numero: {{contacto.phoneNumbers[0].value}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

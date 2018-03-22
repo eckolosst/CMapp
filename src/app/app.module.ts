@@ -16,12 +16,14 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { Contacts } from '@ionic-native/contacts';
 
 import { UserService } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { Section } from '../providers/providers';
 import { MyApp } from './app.component';
 import { Settings } from '../providers/providers';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -67,6 +69,7 @@ export function provideSettings(storage: Storage) {
     File,
     GoogleMaps,
     SplashScreen,
+    Contacts,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
