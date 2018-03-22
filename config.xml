@@ -94,9 +94,10 @@
     </plugin>
     <plugin name="cordova-plugin-request-location-accuracy" spec="^2.2.2" />
     <plugin name="cordova-sms-plugin" spec="^0.1.11" />
-    <engine name="ios" spec="^4.4.0" />
     <plugin name="mx.ferreyra.callnumber" spec="0.0.2" />
     <plugin name="cordova-plugin-screen-orientation" spec="https://github.com/apache/cordova-plugin-screen-orientation" />
-    <engine name="android" spec="~7.0.0" />
     <allow-navigation href="http://192.168.200.114:8100" />
+    <plugin name="cordova-plugin-contacts" spec="^3.0.1" />
+    <engine name="ios" spec="^4.4.0" />
+    <engine name="android" spec="~7.0.0" />
 </widget>

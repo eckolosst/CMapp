@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { UserService } from '../../providers/providers';
-import { MainPage } from '../pages';
 import { User } from '../../models/user';
 import { NativeStorage } from '@ionic-native/native-storage';
 

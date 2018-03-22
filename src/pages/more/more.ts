@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { MainPage } from '../pages';
+// import { MainPage } from '../pages';
 
 @IonicPage()
 @Component({
