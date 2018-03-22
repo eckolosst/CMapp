@@ -31,18 +31,6 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      console.log("iniciando")
-      // // Verifica si ya fue visto el tutorial
-      // this.nativeStorage.getItem('visto')
-      //   .then(
-      //     data => {
-      //       if(data)
-      //         this.rootPage = FirstRunPage;
-      //       else
-      //         this.rootPage = MainPage;
-      //     },
-      //     error => console.error("error", error)
-      // );
     });
     this.initTranslate();
   }

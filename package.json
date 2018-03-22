@@ -23,7 +23,7 @@
     "@ionic-native/base64": "^4.5.3",
     "@ionic-native/call-number": "^4.6.0",
     "@ionic-native/camera": "^4.3.2",
-    "@ionic-native/contacts": "^4.5.3",
+    "@ionic-native/contacts": "^4.6.0",
     "@ionic-native/core": "4.5.2",
     "@ionic-native/file": "^4.5.2",
     "@ionic-native/google-maps": "^4.5.3",
