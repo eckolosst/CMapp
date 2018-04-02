@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-card>
-    <ion-card-header color="dspace">Contactanos</ion-card-header>
+    <ion-card-header>Contactanos</ion-card-header>
     <ion-card-content>
       <button ion-item (click)="goTestimony()"><ion-icon name="text" item-start></ion-icon>Dejá tu testimonio</button>
       <button ion-item (click)="goLlamanos()"><ion-icon name="call" item-start></ion-icon>Llamanos</button>
@@ -17,7 +17,7 @@
   </ion-card>
 
   <ion-card *ngIf="identity">
-    <ion-card-header color="dspace">Perfil</ion-card-header>
+    <ion-card-header>Perfil</ion-card-header>
     <ion-card-content>
       <button ion-item><ion-icon name="create" item-start></ion-icon>Editar Perfil</button>
       <button ion-item (click)="logout()"><ion-icon name="close" item-start></ion-icon>Cerrar Sesión</button>
@@ -25,10 +25,10 @@
   </ion-card>
 
   <ion-card>
-    <ion-card-header color="dspace">Acerca de ...</ion-card-header>
+    <ion-card-header>Acerca de ...</ion-card-header>
     <ion-card-content>
-      <button ion-item (click)="goMumala()"><ion-icon name="game-controller-a" item-start></ion-icon>MUMALA</button>
-      <button ion-item (click)="goCiudadMujer()"><ion-icon name="ionitron" item-start></ion-icon>Ciudad Mujer</button>
+      <button ion-item (click)="goMumala()"><ion-icon name="information-circle" item-start></ion-icon>MUMALA</button>
+      <button ion-item (click)="goCiudadMujer()"><ion-icon name="information-circle" item-start></ion-icon>Ciudad Mujer</button>
     </ion-card-content>
   </ion-card>
 </ion-content>

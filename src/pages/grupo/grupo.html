@@ -1,0 +1,16 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'GRUPO_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-searchbar (ionInput)="searchContacts($event)" placeholder="Nombre del contacto"></ion-searchbar>
+  <p>{{inputName}}</p>
+  <ion-list>
+    <ion-item *ngFor="let item of contacsList"></ion-item>
+  </ion-list>
+</ion-content>

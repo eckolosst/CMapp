@@ -5,6 +5,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { WelcomePage } from '../pages';
 import { UserService } from '../../providers/providers'
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { SMS } from '@ionic-native/sms';
 import {
  GoogleMaps,
  GoogleMap,
@@ -46,7 +47,8 @@ export class SecurityPage {
     private st2: SimpleTimer,
     public toastCtrl: ToastController,
     public _userService: UserService,
-    private locationAccuracy: LocationAccuracy
+    private locationAccuracy: LocationAccuracy,
+    private sms: SMS
   ) {}
 
   ionViewWillEnter(){
