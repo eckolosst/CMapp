@@ -13,28 +13,29 @@
 
       <ion-item>
         <ion-label fixed>{{ 'NAME' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="account.name" name="name"></ion-input>
+        <ion-input type="text" [(ngModel)]="user.nombre" name="name"></ion-input>
       </ion-item>
 
-      <!-- <ion-item>
-        <ion-label fixed>{{ 'NAME' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="account.name" name="name"></ion-input>
-      </ion-item> -->
+      <ion-item>
+        <ion-label fixed>Apellido</ion-label>
+        <ion-input type="text" [(ngModel)]="user.apellido" name="last_name"></ion-input>
+      </ion-item>
 
       <ion-item>
         <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
-        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+        <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
-        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+        <ion-input type="password" [(ngModel)]="user.pass" name="password"></ion-input>
       </ion-item>
 
       <div padding>
         <button ion-button color="primary" block>{{ 'SIGNUP_BUTTON' | translate }}</button>
       </div>
 
+      {{data}}
     </ion-list>
   </form>
 </ion-content>
