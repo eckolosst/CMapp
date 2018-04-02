@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-import { Contacts, ContactFieldType, ContactFindOptions } from '@ionic-native/contacts';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { Contact, Contacts, ContactFieldType, ContactFindOptions } from '@ionic-native/contacts';
 
 @IonicPage()
 @Component({
@@ -10,12 +10,26 @@ import { Contacts, ContactFieldType, ContactFindOptions } from '@ionic-native/co
 })
 export class GrupoPage {
   private contacsList: Array<any> = [];
+  private grupos: Array<any> = [];
+  private grupo: Array<Contact> = [];
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private contacts: Contacts
-  ) {  }
+    private contacts: Contacts,
+    private nativeStorage: NativeStorage) {
+      this.recuperarGrupos();
+    }
+
+  recuperarGrupos(){
+    this.nativeStorage.getItem('identity').then(
+      (idUser) => {
+        this.nativeStorage.getItem('infoUser').then(
+          (infoUser) => {
+            this.grupos = infoUser.find(x => x.idUser == idUser._id).grupos;
+          });
+    });
+  }
 
   searchContacts(ev:any){
     let fields: ContactFieldType[] = ['displayName'];
@@ -34,11 +48,8 @@ export class GrupoPage {
     });
   }
 
-
-
-
-
-
-
+  private addContact(item:Contact){
+    this.grupo.push(item);
+  }
 
 }

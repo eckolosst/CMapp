@@ -14,6 +14,7 @@ export class LoginPage {
   public identity;
   public token;
   public user;
+  public infoUser;
 
   constructor(
     public navCtrl: NavController,
@@ -41,20 +42,30 @@ export class LoginPage {
                     this.token = response.token;
                     if(this.token.length <= 0){console.log('El token no se ha generado');}
                     else{
-                        this.nativeStorage.setItem('token', this.token)
-                        .then(
-                          () => console.log('Stored item!'),
-                          error => console.error('Error storing item', error)
-                        );
-                        // this.status = 'succes';
+                        this.nativeStorage.setItem('token', this.token).then( () => {
+                          /* console.log('Stored item!')
+                          Si almacenó el token en storage procedo a verificar si existen arreglos de grupos*/
+                          this.nativeStorage.getItem('infoUser').then((info) => {
+                            /*Si ya existe un arreglo verifico que haya uno para el user logueandose*/
+                            if(info.find(x => x.idUser == this.identity._id) == undefined){
+                              this.infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Familia","contactos":[]}]});
+                              this.nativeStorage.setItem('infoUser', this.infoUser)
+                              // this.msjLog("Existe arreglo, verifico que haya uno para el user logueado");
+                            }
+                          },(error) => {
+                            this.msjLog("entro en errr");
+                            /*Si no existe un arreglo creo uno nuevo con el user que se loguea*/
+                            this.infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Familia","contactos":[]}]})
+                            this.nativeStorage.setItem('infoUser', this.infoUser);
+                            this.msjLog("No existe arreglo, creo uno nuevo con user logueado");
+                          });
+                        },(error) => console.error('Error storing item', error));
                         this.navCtrl.pop();
                     }
-                },
-                error => {console.log(<any> error);}
-            );
+                    // this.status = 'succes';
+                },(error) => {console.log(<any> error)});
         }
-      },
-      (err) => {
+      },(err) => {
         // this.navCtrl.push(MainPage);
         // Unable to log in
         let toast = this.toastCtrl.create({
@@ -63,6 +74,15 @@ export class LoginPage {
           position: 'top'
         });
         toast.present();
+      });
+  }
+
+  private msjLog(msj: string){
+    let toast1 = this.toastCtrl.create({
+      message: msj,
+      duration: 5000,
+      position: 'center'
     });
+    toast1.present();
   }
 }

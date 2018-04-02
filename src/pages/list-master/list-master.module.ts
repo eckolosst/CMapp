@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
-
+import { Section } from '../../providers/providers';
 import { ListMasterPage } from './list-master';
 
 @NgModule({
@@ -14,6 +14,9 @@ import { ListMasterPage } from './list-master';
   ],
   exports: [
     ListMasterPage
+  ],
+  providers: [
+    Section
   ]
 })
 export class ListMasterPageModule { }

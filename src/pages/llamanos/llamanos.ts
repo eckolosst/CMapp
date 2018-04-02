@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CallNumber } from '@ionic-native/call-number';
+// import { CallNumber } from '@ionic-native/call-number';
 
 /**
  * Generated class for the LlamanosPage page.
@@ -20,7 +20,7 @@ export class LlamanosPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private callNumber: CallNumber,
+    // private callNumber: CallNumber,
     public translateService: TranslateService) {
   }
 
@@ -28,11 +28,11 @@ export class LlamanosPage {
     console.log('ionViewDidLoad LlamanosPage');
   }
 
-  call(){
-    // Tel. Mumala 02994494560
-    this.callNumber.callNumber("02996736141", true)
-      .then(() => console.log('Launched dialer!'))
-      .catch(() => console.log('Error launching dialer'));
-  }
+  // call(){
+  //   // Tel. Mumala 02994494560
+  //   this.callNumber.callNumber("02996736141", true)
+  //     .then(() => console.log('Launched dialer!'))
+  //     .catch(() => console.log('Error launching dialer'));
+  // }
 
 }
