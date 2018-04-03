@@ -17,15 +17,17 @@
     <ion-card-header>Grupos de Contactos</ion-card-header>
     <ion-card-content>
       <button ion-item (click)="goGrupos()"><ion-icon name="people" item-start></ion-icon>Mis Grupos</button>
-      <p>Ayuda para definir grupos de contactos</p>
+      <p>Crea, edita y elimina tus grupos de confianza.</p>
     </ion-card-content>
   </ion-card>
 
   <ion-card>
-    <ion-card-header>Lugares</ion-card-header>
+    <ion-card-header>Seguridad</ion-card-header>
     <ion-card-content>
-      <button ion-item ><ion-icon name="pin" item-start></ion-icon>Mis Lugares</button>
-      <p>Ayuda para definir grupos de contactos</p>
+      <button ion-item (click)="goSecurity()"><ion-icon name="map" item-start></ion-icon>Seguimiento</button>
+      <p>Activa el seguimiento de seguridad.</p>
     </ion-card-content>
   </ion-card>
+  <p *ngFor="let d of data">{{d.nombre}}</p>
+  <button secondary ion-button block button upercase color="danger" (click)="antipanico()">Botón Antipánico</button>
 </ion-content>

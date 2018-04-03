@@ -9,9 +9,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { GoogleMaps } from '@ionic-native/google-maps';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { Contacts } from '@ionic-native/contacts';
 
 import { UserService } from '../providers/providers';
@@ -54,10 +52,8 @@ export function provideSettings(storage: Storage) {
   providers: [
     Api,
     ScreenOrientation,
-    LocationAccuracy,
     NativeStorage,
     UserService,
-    GoogleMaps,
     SplashScreen,
     Contacts,
     StatusBar,

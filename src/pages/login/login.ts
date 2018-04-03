@@ -6,7 +6,7 @@ import { User } from '../../models/user';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 @IonicPage()
-@Component({ 
+@Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
@@ -14,7 +14,7 @@ export class LoginPage {
   public identity;
   public token;
   public user;
-  public infoUser;
+  public infoUser=[];
 
   constructor(
     public navCtrl: NavController,
@@ -22,7 +22,7 @@ export class LoginPage {
     public toastCtrl: ToastController,
     public translateService: TranslateService,
     private nativeStorage: NativeStorage) {
-      this.user = new User('','','','','user',[]);
+      this.user = new User('','','','','',[]);
   }
 
   doLogin() {
@@ -48,14 +48,14 @@ export class LoginPage {
                           this.nativeStorage.getItem('infoUser').then((info) => {
                             /*Si ya existe un arreglo verifico que haya uno para el user logueandose*/
                             if(info.find(x => x.idUser == this.identity._id) == undefined){
-                              this.infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Familia","contactos":[]}]});
+                              this.infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Antipánico","contactos":[[{"nombre":"Daniela","telefono":2996736141},{"nombre":"Lucas","telefono":2996731809}]]}]});
                               this.nativeStorage.setItem('infoUser', this.infoUser)
                               // this.msjLog("Existe arreglo, verifico que haya uno para el user logueado");
                             }
                           },(error) => {
                             this.msjLog("entro en errr");
                             /*Si no existe un arreglo creo uno nuevo con el user que se loguea*/
-                            this.infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Familia","contactos":[]}]})
+                            this.infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Antipánico","contactos":[[{"nombre":"Daniela","telefono":2996736141},{"nombre":"Lucas","telefono":2996731809}]]}]});
                             this.nativeStorage.setItem('infoUser', this.infoUser);
                             this.msjLog("No existe arreglo, creo uno nuevo con user logueado");
                           });

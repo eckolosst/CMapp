@@ -24,8 +24,8 @@ export class MyApp {
     private nativeStorage: NativeStorage,
     private screenOrientation: ScreenOrientation) {
 
-    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
-    // this.screenOrientation.unlock();
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    this.screenOrientation.unlock();
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
