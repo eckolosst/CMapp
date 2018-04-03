@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{nombreGrupo}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngIf="grupo.length == 0">
+      <p>No hay contactos en el grupo</p>
+    </ion-item>
+    <ion-item *ngFor="let contact of grupo">
+      {{contact.nombre}}: {{contact.telefono}}
+    </ion-item>
+  </ion-list>
+
+  <ion-searchbar (ionInput)="searchContacts($event)" placeholder="Agregar contacto"></ion-searchbar>
+  <p>{{inputName}}</p>
+  <ion-list>
+    <ion-item *ngFor="let item of contacsList" (click)=addContact(item)>
+      <h2>{{item.displayName}}: {{item.phoneNumbers[0].value}}</h2>
+    </ion-item>
+  </ion-list>
+</ion-content>

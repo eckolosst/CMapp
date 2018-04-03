@@ -10,7 +10,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { Contacts } from '@ionic-native/contacts';
 
 import { UserService } from '../providers/providers';
 import { Api } from '../providers/providers';
@@ -55,7 +54,6 @@ export function provideSettings(storage: Storage) {
     NativeStorage,
     UserService,
     SplashScreen,
-    Contacts,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development

@@ -12,7 +12,7 @@ import { UserService } from '../../providers/providers';
 })
 export class MenuSeguridadPage {
 
-  private data =[] //Borrar
+  private logueado: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -21,7 +21,16 @@ export class MenuSeguridadPage {
     private sms: SMS,
     private nativeStorage: NativeStorage,
     private _userService: UserService
-  ) { }
+  ) {}
+
+  private ionViewWillEnter(){
+    this.nativeStorage.getItem('identity').then(
+      () => {this.logueado = true;},
+      (error) => {
+        this.logueado = false;
+        this.navCtrl.push("WelcomePage")
+      });
+  }
 
   goGrupos(){
     this.navCtrl.push("GrupoPage");
