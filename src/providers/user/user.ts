@@ -29,7 +29,7 @@ export class UserService {
       }
       let params = JSON.stringify(user_to_login);
       let headers =  new Headers({'Content-Type': 'application/json'});
-      return  this._http.post(this.url+'/usuarioLog/', params, {headers:headers})
+      return  this._http.post(this.url+'/usuarioLog/app', params, {headers:headers})
                         .map(res => res.json());
   }
 

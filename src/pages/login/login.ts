@@ -6,7 +6,7 @@ import { User } from '../../models/user';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 @IonicPage()
-@Component({ 
+@Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
@@ -14,7 +14,6 @@ export class LoginPage {
   public identity;
   public token;
   public user;
-  public infoUser;
 
   constructor(
     public navCtrl: NavController,
@@ -43,21 +42,19 @@ export class LoginPage {
                     if(this.token.length <= 0){console.log('El token no se ha generado');}
                     else{
                         this.nativeStorage.setItem('token', this.token).then( () => {
+                          var infoUser = [];
                           /* console.log('Stored item!')
                           Si almacenó el token en storage procedo a verificar si existen arreglos de grupos*/
                           this.nativeStorage.getItem('infoUser').then((info) => {
                             /*Si ya existe un arreglo verifico que haya uno para el user logueandose*/
                             if(info.find(x => x.idUser == this.identity._id) == undefined){
-                              this.infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Familia","contactos":[]}]});
-                              this.nativeStorage.setItem('infoUser', this.infoUser)
-                              // this.msjLog("Existe arreglo, verifico que haya uno para el user logueado");
+                              infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Antipánco","contactos":[]}]});
+                              this.nativeStorage.setItem('infoUser', infoUser)
                             }
                           },(error) => {
-                            this.msjLog("entro en errr");
                             /*Si no existe un arreglo creo uno nuevo con el user que se loguea*/
-                            this.infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Familia","contactos":[]}]})
-                            this.nativeStorage.setItem('infoUser', this.infoUser);
-                            this.msjLog("No existe arreglo, creo uno nuevo con user logueado");
+                            infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Familia","contactos":[]}]})
+                            this.nativeStorage.setItem('infoUser', infoUser);
                           });
                         },(error) => console.error('Error storing item', error));
                         this.navCtrl.pop();
@@ -75,14 +72,5 @@ export class LoginPage {
         });
         toast.present();
       });
-  }
-
-  private msjLog(msj: string){
-    let toast1 = this.toastCtrl.create({
-      message: msj,
-      duration: 5000,
-      position: 'center'
-    });
-    toast1.present();
   }
 }
