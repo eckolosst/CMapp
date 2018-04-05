@@ -48,13 +48,13 @@ export class LoginPage {
                           this.nativeStorage.getItem('infoUser').then((info) => {
                             /*Si ya existe un arreglo verifico que haya uno para el user logueandose*/
                             if(info.find(x => x.idUser == this.identity._id) == undefined){
-                              infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Antipánico","contactos":[[{"nombre":"Daniela","telefono":2996736141},{"nombre":"Lucas","telefono":2996731809}]]}]});
+                              infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Antipánico","contactos":[{"nombre":"Daniela","telefono":2996736141},{"nombre":"Lucas","telefono": 2996731809}]}]});
                               this.nativeStorage.setItem('infoUser', infoUser)
                               // this.msjLog("Existe arreglo, verifico que haya uno para el user logueado");
                             }
                           },(error) => {
                             /*Si no existe un arreglo creo uno nuevo con el user que se loguea*/
-                            infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Antipánico","contactos":[[{"nombre":"Daniela","telefono":2996736141},{"nombre":"Lucas","telefono":2996731809}]]}]});
+                            infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Antipánico","contactos":[{"nombre":"Daniela","telefono":2996736141},{"nombre":"Lucas","telefono":2996731809}]}]});
                             this.nativeStorage.setItem('infoUser', infoUser);
                           });
                         },(error) => console.error('Error storing item', error));

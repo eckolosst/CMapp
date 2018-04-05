@@ -3,11 +3,12 @@
   <ion-navbar>
     <ion-title>{{ 'SEGURIDAD_TITLE' | translate }}</ion-title>
 
-    <ion-buttons end>
+    <!-- Botón para sección de ayuda. Pendiente -->
+    <!-- <ion-buttons end>
       <button ion-button icon-only>
         <ion-icon name="help-circle"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
 
 </ion-header>
@@ -26,8 +27,15 @@
     <ion-card-content>
       <button ion-item (click)="goSecurity()"><ion-icon name="map" item-start></ion-icon>Seguimiento</button>
       <p>Activa el seguimiento de seguridad.</p>
+      <div  id="map_canvas"></div>
     </ion-card-content>
   </ion-card>
-  <p *ngFor="let d of data">{{d.nombre}}</p>
-  <button secondary ion-button block button upercase color="danger" (click)="antipanico()">Botón Antipánico</button>
+
+  <ion-card>
+    <ion-card-content>
+      <button class="btn-anti" secondary ion-button block button upercase color="danger" (click)="antipanico()">Botón Antipánico</button>
+      <p>ATENCIÓN: Esta acción realiza envíos de SMS a todos aquellos contactos que se encuentren en el grupo "Antipánico".</p>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

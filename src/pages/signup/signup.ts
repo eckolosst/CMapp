@@ -30,7 +30,7 @@ export class SignupPage {
 
     // Attempt to login in through our User service
     this._userService.register(this.user).subscribe((resp) => {
-      this.navCtrl.push(WelcomePage);
+      this.navCtrl.pop();
       // this.data = resp;
     }, (err) => {
 
