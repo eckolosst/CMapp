@@ -100,4 +100,5 @@
     <allow-navigation href="http://192.168.42.233:8100" />
     <allow-navigation href="http://172.16.176.187:8100" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
+    <allow-navigation href="http://10.0.8.163:8100" />
 </widget>

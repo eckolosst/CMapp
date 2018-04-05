@@ -16,10 +16,12 @@ export interface Slide {
   templateUrl: 'tutorial.html'
 })
 export class TutorialPage {
+
   slides: Slide[];
   showSkip = true;
   dir: string = 'ltr';
   public tutorial = false;
+
   constructor(
     public navCtrl: NavController, translate: TranslateService,
     public platform: Platform,
@@ -44,7 +46,6 @@ export class TutorialPage {
             "TUTORIAL_SLIDE3_DESCRIPTION",
           ]).subscribe(
             (values) => {
-              console.log('Loaded values', values);
               this.slides = [
                 {
                   title: values.TUTORIAL_SLIDE1_TITLE,
@@ -70,13 +71,12 @@ export class TutorialPage {
   startApp() {
     this.nativeStorage.setItem('tutorial', true).then(
       () => {
-        console.log('Tutorial Visto');
         this.navCtrl.setRoot(MainPage, {}, {
           animate: true,
           direction: 'forward'
         });
       },
-      error => console.error('Error storing item tutorial', error)
+      error => {  }
     );
 
 }

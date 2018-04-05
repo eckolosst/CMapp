@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-// Response RequestOptions
 import 'rxjs/add/operator/map';
-// import { Observable } from 'rxjs/Observable';
 import { GLOBAL } from '../../global';
 import { NativeStorage } from '@ionic-native/native-storage';
 
@@ -34,54 +32,35 @@ export class UserService {
   }
 
   updateSeguimiento(data,id){
-    // let params = JSON.stringify(data);
     let headers = new Headers({"Content-Type":"application/json", 'Authorization': this.getToken()});
     return this._http.put(this.url+"/seguimiento/"+id,data,{headers: headers}).map(res => res.json());
   }
 
   getIdentity(){
-      let identityIn;
-      try{
-        this.nativeStorage.getItem('identity')
-          .then(
-            data => identityIn = data,
-            error => console.error(error)
-          );
-      }
-      catch(ex){
-          console.log('no se ha logueado nadie aun')
-      }
-
-      if(identityIn != 'undefined'){
-          this.identity = identityIn;
-      }
-      else{
-          this.identity = null;
-      }
-      return this.identity;
+    let identityIn;
+    try{
+      this.nativeStorage.getItem('identity').then(
+        data => identityIn = data,
+        error => console.error(error)
+      );
+    }
+    catch(ex){ }
+    if(identityIn != 'undefined'){ this.identity = identityIn; }
+    else{ this.identity = null; }
+    return this.identity;
   }
 
   getToken(){
-      let tokenIn;
-      try{
-        this.nativeStorage.getItem('token')
-          .then(
-            data => {
-              tokenIn = data;
-            },
-            error => console.error(error)
-          );
-      }
-      catch(ex){
-          console.log('Error por token')
-      }
-
-      if(tokenIn != 'undefined'){
-          this.token = tokenIn;
-      }
-      else{
-          this.token = null;
-      }
-      return this.token
+    let tokenIn;
+    try{
+      this.nativeStorage.getItem('token').then(
+        data => {tokenIn = data},
+        error => console.error(error)
+      );
     }
+    catch(ex){ }
+    if(tokenIn != 'undefined'){ this.token = tokenIn; }
+    else{ this.token = null;}
+    return this.token
+  }
 }

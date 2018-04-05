@@ -28,49 +28,49 @@ export class LoginPage {
     this._userService.login(this.user).subscribe(
       (response) => {
         this.identity = response;
-        if(!this.identity || !this.identity._id){
-            console.log('El usuario no se ha logueado coorectamente: id incorrecto')
-        }else{
-            this.nativeStorage.setItem('identity', this.identity).then(
-              () => console.log('Stored item!'+this.identity),
-              error => console.error('Error storing item', error)
-            );
-            //Obtencion del token
-            this._userService.login(this.user, 'true').subscribe(
-                response => {
-                    this.token = response.token;
-                    if(this.token.length <= 0){console.log('El token no se ha generado');}
-                    else{
-                        this.nativeStorage.setItem('token', this.token).then( () => {
-                          var infoUser = [];
-                          /* console.log('Stored item!')
-                          Si almacenó el token en storage procedo a verificar si existen arreglos de grupos*/
-                          this.nativeStorage.getItem('infoUser').then((info) => {
-                            /*Si ya existe un arreglo verifico que haya uno para el user logueandose*/
-                            if(info.find(x => x.idUser == this.identity._id) == undefined){
-                              infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Antipánco","contactos":[]}]});
-                              this.nativeStorage.setItem('infoUser', infoUser)
-                            }
-                          },(error) => {
-                            /*Si no existe un arreglo creo uno nuevo con el user que se loguea*/
-                            infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Familia","contactos":[]}]})
-                            this.nativeStorage.setItem('infoUser', infoUser);
-                          });
-                        },(error) => console.error('Error storing item', error));
-                        this.navCtrl.pop();
+        if(!this.identity || !this.identity._id){this.reportarError('El usuario no se ha logueado coorectamente: id incorrecto');}
+        else{
+          this.nativeStorage.setItem('identity', this.identity).then(
+            () => {},
+            error => {this.reportarError('Error al recuperar datos del servidor')}
+          );
+          //Obtencion del token
+          this._userService.login(this.user, 'true').subscribe(
+            response => {
+              this.token = response.token;
+              if(this.token.length <= 0){this.reportarError('Error al recuperar datos del servidor')}
+              else{
+                this.nativeStorage.setItem('token', this.token).then( () => {
+                  var infoUser = [];
+                  /* Si almacenó el token en storage procedo a verificar si existen arreglos de grupos*/
+                  this.nativeStorage.getItem('infoUser').then((info) => {
+                    /*Si ya existe un arreglo verifico que haya uno para el user logueandose*/
+                    if(info.find(x => x.idUser == this.identity._id) == undefined){
+                      infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Antipánico","contactos":[]}]});
+                      this.nativeStorage.setItem('infoUser', infoUser)
                     }
-                    // this.status = 'succes';
-                },(error) => {console.log(<any> error)});
+                  },(error) => {
+                    /*Si no existe un arreglo creo uno nuevo con el user que se loguea*/
+                    infoUser.push({"idUser": this.identity._id, "grupos": [{"nombre":"Antipánico","contactos":[]}]})
+                    this.nativeStorage.setItem('infoUser', infoUser);
+                  });
+                },(error) => {});
+                this.navCtrl.pop();
+              }
+            },
+            (error) => {this.reportarError('Error al recuperar datos del servidor')}
+          );
         }
-      },(err) => {
-        // this.navCtrl.push(MainPage);
-        // Unable to log in
-        let toast = this.toastCtrl.create({
-          message: "Error al Iniciar Sesión. Por favor verifique sus datos.",
-          duration: 10000,
-          position: 'top'
-        });
-        toast.present();
-      });
+      },
+      (err) => {this.reportarError('Error al Iniciar Sesión. Por favor verifique sus datos.')}
+    );
+  }
+
+  reportarError(msj: string){
+    let toast = this.toastCtrl.create({
+      message: msj,
+      duration: 2000
+    });
+    toast.present();
   }
 }

@@ -17,17 +17,11 @@ export class MorePage {
     public navParams: NavParams,
     private nativeStorage: NativeStorage,
     public toastCtrl: ToastController) {
-
       this.nativeStorage.getItem('identity')
         .then(
-          data => {
-            this.identity = data != undefined;
-          },
-          error => {
-            console.error(error, this.identity)
-            this.identity = false;
-          }
-      );
+          data => {this.identity = data != undefined;},
+          error => {this.identity = false;}
+         );
   }
 
   ionViewDidEnter(){
@@ -35,7 +29,6 @@ export class MorePage {
     this.nativeStorage.getItem('identity')
       .then(
         data => {
-          console.log("Entró a more")
           this.identity = data != undefined;
         },
         error => {
@@ -72,8 +65,8 @@ export class MorePage {
           toast.present();
           // this.navCtrl.setRoot(MainPage);
           this.navCtrl.setRoot(this.navCtrl.getActive().component)
-      },
-      error => console.error('Error cerrando sesión', error)
+        },
+      error => {/*console.error('Error cerrando sesión', error)*/}
     );
   }
 }

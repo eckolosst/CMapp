@@ -20,14 +20,9 @@ export class ListMasterPage{
     public navCtrl: NavController,
     private _service : Section,
     private nativeStorage: NativeStorage ) {
-
     this._service.getListaSecciones().subscribe(
-        result =>{
-            this.secciones = result.secciones;
-        },
-        error =>{
-            console.log(<any>error);
-        }
+        result =>{this.secciones = result.secciones;},
+        error =>{}
     );
 
     this.slides = [
@@ -40,19 +35,13 @@ export class ListMasterPage{
   ionViewWillEnter(){
     this.nativeStorage.getItem('identity')
       .then(
-        data => {
-          this.identity = data != undefined;
-        },
-        error => {
-          this.identity = false;
-        }
+        data => {this.identity = data != undefined; },
+        error => {this.identity = false;}
     );
   }
 
   openItem(seccion: Seccion) {
-    this.navCtrl.push('ItemDetailPage', {
-      seccion: seccion
-    });
+    this.navCtrl.push('ItemDetailPage', {seccion: seccion});
   }
 
   goLogReg() {

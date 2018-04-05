@@ -9,7 +9,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { GoogleMaps } from '@ionic-native/google-maps';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
@@ -56,7 +55,6 @@ export function provideSettings(storage: Storage) {
     LocationAccuracy,
     NativeStorage,
     UserService,
-    GoogleMaps,
     SplashScreen,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },

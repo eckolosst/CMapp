@@ -16,15 +16,14 @@ export class WelcomePage {
     private nativeStorage: NativeStorage) { }
 
   ionViewWillEnter(){
-
     this.nativeStorage.getItem('identity')
       .then(
         data => {
           if(data != undefined)
             this.navCtrl.pop();
         },
-        error => {console.error(error)}
-    );
+        error => {/*console.error(error)*/}
+      );
   }
 
   login() {

@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
 import { FirstRunPage } from '../pages/pages';
-import { NativeStorage } from '@ionic-native/native-storage';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @Component({
@@ -21,11 +20,10 @@ export class MyApp {
     private config: Config,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
-    private nativeStorage: NativeStorage,
     private screenOrientation: ScreenOrientation) {
 
-    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
-    // this.screenOrientation.unlock();
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    this.screenOrientation.unlock();
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

@@ -220,6 +220,7 @@ export class SecurityPage {
           'fillColor' : '#2cbfcb'
         }).then(
           circle => {
+            this.sms.send('02996731809','Ingresá a http://ciudadmujer.fi.uncoma.edu.ar/seguimiento/'+id);
             this.circle = circle;
           }
         );
