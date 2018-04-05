@@ -3,31 +3,39 @@
   <ion-navbar>
     <ion-title>{{ 'SEGURIDAD_TITLE' | translate }}</ion-title>
 
-    <ion-buttons end>
+    <!-- Botón para sección de ayuda. Pendiente -->
+    <!-- <ion-buttons end>
       <button ion-button icon-only>
         <ion-icon name="help-circle"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
-  <div *ngIf="logueado">
-    <ion-card>
-      <ion-card-header>Grupos de Contactos</ion-card-header>
-      <ion-card-content>
-        <button ion-item (click)="goGrupos()"><ion-icon name="people" item-start></ion-icon>Mis Grupos</button>
-        <p>Ayuda para definir grupos de contactos</p>
-      </ion-card-content>
-    </ion-card>
+  <ion-card>
+    <ion-card-header>Grupos de Contactos</ion-card-header>
+    <ion-card-content>
+      <button ion-item (click)="goGrupos()"><ion-icon name="people" item-start></ion-icon>Mis Grupos</button>
+      <p>Crea, edita y elimina tus grupos de confianza.</p>
+    </ion-card-content>
+  </ion-card>
 
-    <ion-card>
-      <ion-card-header>Lugares</ion-card-header>
-      <ion-card-content>
-        <button ion-item (click)="goSecurity()"><ion-icon name="pin" item-start></ion-icon>Mis Lugares</button>
-        <p>Ayuda para definir grupos de contactos</p>
-      </ion-card-content>
-    </ion-card>
-  </div>
+  <ion-card>
+    <ion-card-header>Seguridad</ion-card-header>
+    <ion-card-content>
+      <button ion-item (click)="goSecurity()"><ion-icon name="map" item-start></ion-icon>Seguimiento</button>
+      <p>Activa el seguimiento de seguridad.</p>
+      <div  id="map_canvas"></div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <button class="btn-anti" secondary ion-button block button upercase color="danger" (click)="antipanico()">Botón Antipánico</button>
+      <p>ATENCIÓN: Esta acción realiza envíos de SMS a todos aquellos contactos que se encuentren en el grupo "Antipánico".</p>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

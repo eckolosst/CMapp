@@ -4,6 +4,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { SMS } from '@ionic-native/sms';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { SecurityPage } from './security';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 @NgModule({
   declarations: [

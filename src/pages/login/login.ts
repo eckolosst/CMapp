@@ -21,7 +21,7 @@ export class LoginPage {
     public toastCtrl: ToastController,
     public translateService: TranslateService,
     private nativeStorage: NativeStorage) {
-      this.user = new User('','','','','user',[]);
+      this.user = new User('','','','','',[]);
   }
 
   doLogin() {
