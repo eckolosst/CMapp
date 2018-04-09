@@ -4,26 +4,33 @@
     <ion-title>{{nombreGrupo}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="guardar()">
-        <ion-icon name="archive"></ion-icon>
+        <ion-icon name="checkmark"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngIf="grupo.length == 0">
-      <p>No hay contactos en el grupo</p>
-    </ion-item>
-    <ion-item *ngFor="let contact of grupo, let i=index">
-      {{contact.nombre}}: {{contact.telefono}}
-      <ion-buttons item-end (click)="removeContact(i)">
-        <button ion-button icon-only>
-          <ion-icon name="trash"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-item>
-  </ion-list>
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      Integrantes
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngIf="grupo.length == 0">
+          <p>No hay contactos en el grupo</p>
+        </ion-item>
+        <ion-item *ngFor="let contact of grupo, let i=index">
+          {{contact.nombre}}: {{contact.telefono}}
+          <ion-buttons item-end (click)="removeContact(i)">
+            <button ion-button icon-only>
+              <ion-icon name="trash"></ion-icon>
+            </button>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
   <ion-searchbar (ionInput)="searchContacts($event)" placeholder="Agregar contacto"></ion-searchbar>
   <p>{{inputName}}</p>
