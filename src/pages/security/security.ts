@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { SimpleTimer } from 'ng2-simple-timer';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { WelcomePage } from '../pages';
+import { WelcomePage, Tab2Root } from '../pages';
 import { UserService } from '../../providers/providers'
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { SMS } from '@ionic-native/sms';
@@ -12,11 +12,6 @@ import {
  GoogleMapsEvent,
  GoogleMapOptions,
  Environment
- // CameraPosition,
- // MarkerOptions,
- // Marker,
- // Polyline,
- // PolylineOptions
 } from '@ionic-native/google-maps';
 
 @IonicPage()
@@ -31,14 +26,12 @@ export class SecurityPage {
   public lngO;
   public latD;
   public lngD;
-  public data;
   public mOrigen = null;
   public mDestino = null;
   public circle;
   public circle2;
   public activado = false;
   public timerId: string;
-  public identity;
   public infoUsr;
   constructor(
     public navCtrl: NavController,
@@ -49,37 +42,32 @@ export class SecurityPage {
     public toastCtrl: ToastController,
     public _userService: UserService,
     private locationAccuracy: LocationAccuracy,
+    private alertCtrl: AlertController,
     private sms: SMS
   ) {}
 
   ionViewWillEnter(){
-   this.data = ""
    this.nativeStorage.getItem('identity')
      .then(
        data => {
-        //  this.locationAccuracy.canRequest().then((canRequest: boolean) => {
-        //     if(canRequest) {
-        //       this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
-        //         (d) => {
-                  this.identity = true;
+         this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+            if(canRequest) {
+              this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+                (d) => {
                   this.infoUsr = data;
                   this.loadMap();
-            //     },
-            //     error => {
-            //       console.log('Error al pedir los permiso de ubicación.', error)
-            //     }
-            //   );
-            // }
-          //
-          // });
-
+                },
+                error => {
+                  console.log('Error al pedir los permiso de ubicación.', error)
+                }
+              );
+            }
+          });
        },
        error => {
-         this.identity = false;
          this.navCtrl.push(WelcomePage)
        }
    );
-   return this.identity
   }
 
   loadMap(){
@@ -114,15 +102,13 @@ export class SecurityPage {
   }
 
   getPosition(): void{
-
     this.map.getMyLocation({enableHighAccuracy: true}).then(
     response => {
-
         // Localización actual
         this.latO = response.latLng.lat;
         this.lngO = response.latLng.lng;
-        this.latD = response.latLng.lat + 0.007;
-        this.lngD = response.latLng.lng + 0.007;
+        this.latD = response.latLng.lat + 0.005;
+        this.lngD = response.latLng.lng + 0.005;
 
         // Agrega marcador de Destino
         this.map.addMarker({
@@ -140,6 +126,7 @@ export class SecurityPage {
           },
           draggable: true
         }).then(
+          // Setea propiedad que contiene el marcador de destino
           marker => this.mDestino = marker
         );
 
@@ -157,18 +144,10 @@ export class SecurityPage {
           draggable: false
         }).then(
           marker => {
+            // Setea propiedad que contiene el marcador de origen e inicia timer de recalculo de posición
             this.mOrigen = marker;
             this.st.newTimer('timer', 5);
           	this.timerId = this.st.subscribe('timer', () => this.actualizaOrigen());
-
-            marker.one(GoogleMapsEvent.MARKER_DRAG)
-            .then(() => {
-              // Now you can use all methods safely.
-              this.getPosition();
-            })
-            .catch(error =>{
-              console.log(error);
-            });
           }
         );
 
@@ -186,17 +165,20 @@ export class SecurityPage {
   }
 
   actualizaOrigen(){
+  console.log("Actualiza pos")
+    // Obtiene ubicación actual
     this.map.getMyLocation({enableHighAccuracy: true})
     .then(response => {
+      // Si cambió la ubicación, setea la posición del marcador de origen
       if( this.latO != response.latLng.lat || this.lngO != response.latLng.lng){
         this.latO = response.latLng.lat;
         this.lngO = response.latLng.lng;
-
         this.mOrigen.setPosition(response.latLng)
       }
     })
     .catch(error =>{
       console.log("Ubicación deshabilitada: " + error);
+      // En caso de haberse desactivado la ubicación, solicita reactivarla
       this.locationAccuracy.canRequest().then((canRequest: boolean) => {
          if(canRequest) {
            this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
@@ -209,17 +191,26 @@ export class SecurityPage {
   }
 
   activar(){
+    // Calcular y setea en base de datos primer ubicación del seguimiento
     let id = this.infoUsr._id;
     var data = {
       seguimiento: [this.mOrigen.getPosition(),this.mDestino.getPosition()]
     };
     this._userService.updateSeguimiento(data,id).subscribe(
       response => {
+        // Desactiva posibilidad de mover el marcador de destino.
         this.mDestino.setDraggable(false);
+
+        // Desactiva timer para recalcular posición de origen
         this.st.delTimer('timer');
-        this.st2.newTimer('timer2', 10);
+
+        // Activa timer para actualizar ubicación actual
+        this.st2.newTimer('timer2', 5);
       	this.timerId = this.st2.subscribe('timer2', () => this.actualizarRuta());
+
+        // Setea botón a mostrar
         this.activado = true;
+
         // Agrega circulo a destino
         this.map.addCircle({
           'center': this.mDestino.getPosition(),
@@ -229,10 +220,10 @@ export class SecurityPage {
           'fillColor' : '#2cbfcb'
         }).then(
           circle => {
-            this.sms.send('02996731809','Ingresá a http://ciudadmujer.fi.uncoma.edu.ar/seguimiento/'+id);
             this.circle = circle;
           }
         );
+
         // Agrega circulo a origen
         this.map.addCircle({
           'center': this.mOrigen.getPosition(),
@@ -245,46 +236,69 @@ export class SecurityPage {
             this.circle2 = circle;
           }
         );
-        // this.sms.send('2996731809', 'Ingresa a http://localhost:4200/seguimiento/59f352f8fc602b16bde14c85');
-        // this.sms.send('2996731809', 'Ingresa a http://ciudadmujer.fi.uncoma.edu.ar');
-        // this.sms.send('2996736141', 'Ingresa a http://ciudadmujer.fi.uncoma.edu.ar');
+
+        // Corresponde a variable que entra por parámetro a la vista
+        let contactos = ['2996736141']
+
+        // Envío de mensajes a grupo seleccionado para notificar sobre el seguimiento
+        for(let i=0; i < contactos.length;i++){
+          console.log("mando a "+contactos[i])
+          // this.sms.send(contactos[i], 'Ingresa en el siquiente link para ver mi recorrido: http://ciudadmujer.fi.uncoma.edu.ar/seguimiento/'+id);
+        }
+
       },
-      error => {
-        this.data = error
-      }
+      error => {}
     )
   }
 
   desactivar(){
-    this.st.delTimer('timer2');
+    // Anula timer para actualizar la ubicación del recorrido
+    this.st2.delTimer('timer2');
+
+    // Crea timer para actualizar posición de origen
     this.st.newTimer('timer', 5);
     this.timerId = this.st.subscribe('timer', () => this.actualizaOrigen());
+
+    // Retorna posibilidad de mover el marcador de destino
     this.mDestino.setDraggable(true);
+
+    // Setea propiedad para el botón
     this.activado = false;
+
+    // Elimina círculos de zona cercana
     this.circle.remove();
     this.circle2.remove()
   }
 
   actualizarRuta(){
+    // Obtiene ubicación actual del dispositivo
     this.map.getMyLocation({enableHighAccuracy: true})
     .then(response => {
+      // Setea posiciones de marcador
       this.mOrigen.setPosition(response.latLng);
       this.latO = response.latLng.lat;
       this.lngO = response.latLng.lng;
 
+      // Obtiene id del usuario logueado
       let id = this.infoUsr._id;
-      var data = {
-        seguimiento: [this.mOrigen.getPosition(),this.mDestino.getPosition()]
-      };
+
+      // Actualiza en la base la ubicación actual.
+      var data = { seguimiento: [this.mOrigen.getPosition(),this.mDestino.getPosition()] };
       this._userService.updateSeguimiento(data,id).subscribe(
         response => {
           console.log("Actualizacion realizada")
+
+          // Calcula distancia al destino y verifica que haya alcanzado la zona circular
           let d = this.mDestino.getPosition();
           let o = this.mOrigen.getPosition();
           let distancia = Math.sqrt(Math.pow(d.lat - o.lat,2)+ Math.pow(d.lng - d.lng,2))
           console.log("Distancia: ",distancia)
           if(distancia < 0.0005){
+
+            // Desactiva seguimiento
             this.desactivar();
+
+            // Notificación de llegada
             let toast = this.toastCtrl.create({
               message: 'Has llegado a tu destino (:',
               duration: 2000
@@ -292,13 +306,12 @@ export class SecurityPage {
             toast.present();
           }
         },
-        error => {
-          this.data = error
-        }
+        error => {}
       )
     })
     .catch(error =>{
       console.log("Ubicación deshabilitada: " + error);
+      // En caso de haberse desactivado la ubicación, solicita reactivarla
       this.locationAccuracy.canRequest().then((canRequest: boolean) => {
          if(canRequest) {
            this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
@@ -309,4 +322,48 @@ export class SecurityPage {
        });
     });
   }
+
+  ionViewWillLeave(){
+      console.log("Entró a WillLeave")
+      if(this.activado)
+        this.st2.delTimer('timer2')
+      else
+        this.st.delTimer('timer')
+      this.navCtrl.setRoot(Tab2Root);
+  }
+
+  ionViewCanLeave(){
+    console.log("Entró a CanLeave")
+    if(this.activado){
+      return new Promise((resolve, reject) => {
+        let alert = this.alertCtrl.create({
+          title: '¿Realmente desea salir?',
+          message: 'Si sale se desactivará el seguimiento. Puedes minimizar la aplicación y este continuará.',
+          buttons: [
+            {
+              text: 'Si',
+              handler: () => {
+                alert.dismiss().then(() => resolve());
+
+                return false;
+              }
+            },
+            {
+              text: 'No',
+              role: 'cancel',
+              handler: () => {
+                reject();
+              }
+            }
+          ]
+        });
+
+        alert.present();
+      });
+    }
+    else{
+      return true
+    }
+  }
+
 }

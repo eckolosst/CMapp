@@ -19,6 +19,7 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
   ],
   providers: [
     GoogleMaps,
+    LocationAccuracy,
     SMS
   ]
 })

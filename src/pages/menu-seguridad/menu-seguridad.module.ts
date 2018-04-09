@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MenuSeguridadPage } from './menu-seguridad';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { SMS } from '@ionic-native/sms';
-import { GoogleMaps } from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
   providers: [
     SMS,
     LocationAccuracy,
-    GoogleMaps
+    Geolocation
   ]
 })
 export class MenuSeguridadPageModule {}

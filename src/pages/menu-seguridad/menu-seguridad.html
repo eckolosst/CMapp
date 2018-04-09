@@ -27,7 +27,6 @@
     <ion-card-content>
       <button ion-item (click)="goSecurity()"><ion-icon name="map" item-start></ion-icon>Seguimiento</button>
       <p>Activa el seguimiento de seguridad.</p>
-      <div  id="map_canvas"></div>
     </ion-card-content>
   </ion-card>
 
@@ -37,5 +36,6 @@
       <p>ATENCIÓN: Esta acción realiza envíos de SMS a todos aquellos contactos que se encuentren en el grupo "Antipánico".</p>
     </ion-card-content>
   </ion-card>
-
+{{data.message}}
+{{data}}
 </ion-content>
