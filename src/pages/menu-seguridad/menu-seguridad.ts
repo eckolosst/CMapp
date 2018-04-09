@@ -42,7 +42,7 @@ export class MenuSeguridadPage {
   }
 
   goSecurity(){
-    this.navCtrl.push("SecurityPage");
+    this.navCtrl.push("GroupSelectPage");
   }
 
   antipanico(){

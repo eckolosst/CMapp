@@ -18,6 +18,7 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
     SecurityPage
   ],
   providers: [
+    LocationAccuracy,
     GoogleMaps,
     LocationAccuracy,
     SMS
