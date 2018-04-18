@@ -4,7 +4,7 @@ import { GLOBAL } from '../../global';
 
 @Injectable()
 export class Section{
-  public url: String;
+  public url: String; 
 
   constructor(
     public _http: Http
@@ -15,9 +15,9 @@ export class Section{
   /*---------------------------------------------------------------------------*/
   /*                        Peticiones para Secciones                          */
   /*---------------------------------------------------------------------------*/
-  getListaSecciones(){
+  getListaSecciones(hoy){
     let headers = new Headers({"Content-Type":"application/json"});
-    return this._http.get(this.url+"/secciones",{headers: headers}).map(res => res.json());
+    return this._http.get(this.url+"/secciones/"+hoy,{headers: headers}).map(res => res.json());
   }
 
 }

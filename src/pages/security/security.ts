@@ -22,17 +22,18 @@ import {
 })
 export class SecurityPage {
   map: GoogleMap;
-  public latO;
-  public lngO;
-  public latD;
-  public lngD;
-  public mOrigen = null;
-  public mDestino = null;
-  public circle;
-  public circle2;
-  public activado = false;
-  public timerId: string;
-  public infoUsr;
+  private latO;
+  private lngO;
+  private latD;
+  private lngD;
+  private mOrigen = null;
+  private mDestino = null;
+  private circle;
+  private circle2;
+  private activado = false;
+  private timerId: string;
+  private infoUsr;
+  private contactos;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -47,6 +48,8 @@ export class SecurityPage {
   ) {}
 
   ionViewWillEnter(){
+  this.contactos = this.navParams.get('numeros');
+  console.log(this.navParams.get('numeros'))
    this.nativeStorage.getItem('identity')
      .then(
        data => {
@@ -237,13 +240,11 @@ export class SecurityPage {
           }
         );
 
-        // Corresponde a variable que entra por parámetro a la vista
-        let contactos = ['2996736141']
 
         // Envío de mensajes a grupo seleccionado para notificar sobre el seguimiento
-        for(let i=0; i < contactos.length;i++){
-          console.log("mando a "+contactos[i])
-          // this.sms.send(contactos[i], 'Ingresa en el siquiente link para ver mi recorrido: http://ciudadmujer.fi.uncoma.edu.ar/seguimiento/'+id);
+        for(let i=0; i < this.contactos.length;i++){
+          console.log("mando a "+this.contactos[i])
+          this.sms.send(this.contactos[i], 'Ingresa en el siquiente link para ver mi recorrido: http://ciudadmujer.fi.uncoma.edu.ar/seguimiento/'+id);
         }
 
       },

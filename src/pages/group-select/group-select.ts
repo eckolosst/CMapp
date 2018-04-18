@@ -47,14 +47,13 @@ export class GroupSelectPage {
   goSeguimiento(){
     if(this.listIndexs.length > 0){
       let numeros: Array<number> = [];
+      let contactos, num;
       for(let i of this.listIndexs){
-        let grupo = this.grupos[i];
-        for(let elto of grupo){
-          let contactos = elto.contactos;
-          for(let contacto of contactos){
-            if(!(numeros.find(x => x == contacto.telefono))) {
-              numeros.push(contacto.telefono);
-            }
+        contactos = this.grupos[i].contactos;
+        for(let cto of contactos){
+          num = cto.telefono;
+          if((numeros.findIndex(x => x == num)) == -1) {
+            numeros.push(num);
           }
         }
       }
