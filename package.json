@@ -20,6 +20,7 @@
     "@angular/http": "5.1.1",
     "@angular/platform-browser": "5.1.1",
     "@angular/platform-browser-dynamic": "5.1.1",
+    "@ionic-native/android-permissions": "^4.7.0",
     "@ionic-native/base64": "^4.5.3",
     "@ionic-native/call-number": "^4.6.0",
     "@ionic-native/camera": "^4.3.2",
@@ -41,6 +42,7 @@
     "com-badrit-base64": "^0.2.0",
     "cordova-android": "~7.0.0",
     "cordova-ios": "^4.4.0",
+    "cordova-plugin-android-permissions": "^1.0.0",
     "cordova-plugin-camera": "^3.0.0",
     "cordova-plugin-contacts": "^3.0.1",
     "cordova-plugin-device": "^1.1.7",
@@ -93,7 +95,8 @@
       "cordova-plugin-screen-orientation": {},
       "cordova-plugin-contacts": {},
       "mx.ferreyra.callnumber": {},
-      "cordova-plugin-geolocation": {}
+      "cordova-plugin-geolocation": {},
+      "cordova-plugin-android-permissions": {}
     },
     "platforms": [
       "android",

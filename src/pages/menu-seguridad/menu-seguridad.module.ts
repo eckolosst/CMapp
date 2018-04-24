@@ -5,6 +5,7 @@ import { MenuSeguridadPage } from './menu-seguridad';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { SMS } from '@ionic-native/sms';
 import { Geolocation } from '@ionic-native/geolocation';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { Geolocation } from '@ionic-native/geolocation';
   providers: [
     SMS,
     LocationAccuracy,
-    Geolocation
+    Geolocation,
+    AndroidPermissions
   ]
 })
 export class MenuSeguridadPageModule {}

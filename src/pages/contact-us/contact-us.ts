@@ -8,6 +8,7 @@ import { Media, MediaObject } from '@ionic-native/media';
 import { LongPressModule } from 'ionic-long-press';
 import { Base64 } from '@ionic-native/base64';
 import { File }  from '@ionic-native/file';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -39,19 +40,33 @@ export class ContactUsPage {
     public toastCtrl: ToastController,
     private media: Media,
     private file: File,
-    private base64: Base64
-  ){
-    this.comentario = new Comment ("","","","","","");
-    this.nameFC = new FormControl('',[Validators.required]);
-    this.emailFC = new FormControl('',[Validators.required, Validators.pattern(EMAIL_REGEX)]);
-    this.audioFileName = 'record.mp3';
-    this.enviando = false;
+    private base64: Base64,
+    private androidPermissions: AndroidPermissions){
+      this.comentario = new Comment ("","","","","","");
+      this.nameFC = new FormControl('',[Validators.required]);
+      this.emailFC = new FormControl('',[Validators.required, Validators.pattern(EMAIL_REGEX)]);
+      this.audioFileName = 'record.mp3';
+      this.enviando = false;
+  }
+
+  ionViewWillEnter(){
+    var arrPermisos = [this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE,this.androidPermissions.PERMISSION.RECORD_AUDIO,this.androidPermissions.PERMISSION.CAMERA];
+    for (let i = 0; i < arrPermisos.length; i++) {
+      this.androidPermissions.checkPermission(arrPermisos[i])
+      .then(
+        (result) => {
+          if(result.hasPermission == false){
+            this.androidPermissions.requestPermission(arrPermisos[i]);
+          }
+        }
+      );
+    }
   }
 
   convertirAudio(){
     var filePath: string;
-    this.file.resolveLocalFilesystemUrl(this.file.externalRootDirectory+this.audioFileName).
-    then(resultado =>{
+    this.file.resolveLocalFilesystemUrl(this.file.externalRootDirectory+this.audioFileName)
+    .then(resultado =>{
       filePath = resultado.nativeURL;
       this.base64.encodeFile(filePath).then(
         (base64Audio: string) => {this.base64Audio = base64Audio;},

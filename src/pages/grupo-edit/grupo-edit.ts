@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { Contact, Contacts, ContactFieldType, ContactFindOptions } from '@ionic-native/contacts';
 import { NativeStorage } from '@ionic-native/native-storage';
-
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 @IonicPage()
 @Component({
@@ -28,7 +28,8 @@ export class GrupoEditPage {
     public contacts: Contacts,
     private alertCtrl: AlertController,
     private nativeStorage: NativeStorage,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    private androidPermissions: AndroidPermissions) {
       this.indiceUser = this.navParams.get('indiceU');
       this.nombreGrupo = this.navParams.get('nombreGrupo');
       this.indiceGroup = this.navParams.get('indiceG');
@@ -38,6 +39,17 @@ export class GrupoEditPage {
           this.grupo = this.infoUser[this.indiceUser].grupos[this.indiceGroup].contactos;
         });
     }
+
+  ionViewWillEnter(){
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.READ_CONTACTS)
+    .then(
+      (result) => {
+        if(result.hasPermission == false){
+          this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.READ_CONTACTS);
+        }
+      }
+    );
+  }
 
   private searchContacts(ev:any){
     let fields: ContactFieldType[] = ['displayName','phoneNumbers'];
