@@ -1,7 +1,8 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/v2/theming/
 $font-path: "../assets/fonts";
-
+@import url(https://fonts.googleapis.com/css?family=Gugi);
+$font-family-base: "Gugi", sans-serif !important;
 @import "ionic.globals";
 
 
