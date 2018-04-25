@@ -5,6 +5,7 @@ import { SMS } from '@ionic-native/sms';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { UserService } from '../../providers/providers';
 import { Geolocation } from '@ionic-native/geolocation';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 @IonicPage()
 @Component({
@@ -25,7 +26,8 @@ export class MenuSeguridadPage {
     private sms: SMS,
     private nativeStorage: NativeStorage,
     private _userService: UserService,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private androidPermissions: AndroidPermissions
   ) {}
 
   ionViewWillEnter(){
@@ -34,7 +36,16 @@ export class MenuSeguridadPage {
       (error) => {
         this.logueado = false;
         this.navCtrl.push("WelcomePage")
-      });
+      }
+    );
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION)
+    .then(
+      (result) => {
+        if(result.hasPermission == false){
+          this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION);
+        }
+      }
+    );
   }
 
   goGrupos(){

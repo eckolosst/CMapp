@@ -15,14 +15,22 @@ $font-family-base: "Gugi", sans-serif !important;
 
 $text-color:        #fff;
 $background-color:  #303030;
-$toolbar-background: #7b1fa2;
+// $toolbar-background: #7b1fa2;
+
+// $toolbar-background: #947ab8;
+// $toolbar-background: #fdc062;
+$toolbar-background: #f47643;
 
 // Formato de los Tabs
-$tabs-background: #7b1fa2;
+// $tabs-background: #947ab8;
+// $tabs-background: #fdc062;
+$tabs-background: #f47643;
 $tabs-tab-color-active: #ffffff;
 $tabs-tab-color-inactive: #000;
 
-$spinner-md-crescent-color: #7b1fa2 !important ;
+// $spinner-md-crescent-color: #947ab8 !important ;
+// $spinner-md-crescent-color: #fdc062 !important;
+$spinner-md-crescent-color: #f47643 !important ;
 
 $toggle-md-handle-background-color-off: white;
 
@@ -35,7 +43,9 @@ $toggle-md-handle-background-color-off: white;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #7b1fa2,
+  // primary:    #947ab8,
+  primary:    #fdc062,
+  // primary:    #f47643,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,

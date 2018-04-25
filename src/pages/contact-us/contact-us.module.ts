@@ -8,6 +8,7 @@ import { File } from '@ionic-native/file';
 import { Camera } from '@ionic-native/camera';
 //Documentacion de LongPressModule https://www.npmjs.com/package/ionic-long-press
 import { Base64 } from '@ionic-native/base64';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { Base64 } from '@ionic-native/base64';
     Base64,
     Camera,
     Media,
-    File
+    File,
+    AndroidPermissions
   ]
 })
 export class ContactUsPageModule {}
