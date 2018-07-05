@@ -4,4 +4,22 @@ page-ciudad-mujer {
     text-align: center;
   }
 
+  .item-detail {
+    width: 100%;
+    position: absolute;
+  }
+
+  .titulo{
+      text-align: center;
+      margin-bottom: 15px;
+  }
+
+  .contenido{
+      background-color: #434347;
+      margin: 10px;
+      padding: 5px;
+      text-align: justify;
+      border-radius: 5px;
+  }
+
 }

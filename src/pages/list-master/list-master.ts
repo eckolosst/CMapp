@@ -101,4 +101,7 @@ export class ListMasterPage{
     this.navCtrl.push('WelcomePage');
   }
 
+  goHelp(){
+    this.navCtrl.push("Help");
+  }
 }

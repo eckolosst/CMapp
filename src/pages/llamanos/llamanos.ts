@@ -18,8 +18,7 @@ export class LlamanosPage {
   }
 
   call(){
-    // Tel. Mumala 02994494560
-    this.callNumber.callNumber("02994598680", true)
+    this.callNumber.callNumber("02994723022", true)
       .then(() => {})
   }
 

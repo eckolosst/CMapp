@@ -241,10 +241,22 @@ export class SecurityPage {
         );
 
 
+        let alert = this.alertCtrl.create({
+          title: 'Seguimiento Activado',
+          message: 'Si sales de esta sección se desactivará el seguimiento. Puedes minimizar la aplicación y este continuará.',
+          buttons: [
+            {
+              text: 'Ok',
+              role: 'cancel'
+            }
+          ]
+        });
+        alert.present();
+
         // Envío de mensajes a grupo seleccionado para notificar sobre el seguimiento
         for(let i=0; i < this.contactos.length;i++){
           console.log("mando a "+this.contactos[i])
-          this.sms.send(this.contactos[i], 'Ingresa en el siquiente link para ver mi recorrido: http://ciudadmujer.fi.uncoma.edu.ar/seguimiento/'+id);
+          this.sms.send(this.contactos[i], 'Estoy en peligro. Entra al siguiente enlace para conocer mi ubicacion actual: http://ciudadmujer.fi.uncoma.edu.ar/seguimiento/'+id);
         }
 
       },
@@ -268,7 +280,12 @@ export class SecurityPage {
 
     // Elimina círculos de zona cercana
     this.circle.remove();
-    this.circle2.remove()
+    this.circle2.remove();
+    let toast = this.toastCtrl.create({
+      message: 'El Seguimiento ha sido Desactivado.',
+      duration: 3000
+    });
+    toast.present();
   }
 
   actualizarRuta(){

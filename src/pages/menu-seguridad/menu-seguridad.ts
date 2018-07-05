@@ -72,7 +72,7 @@ export class MenuSeguridadPage {
                          let contactosAntipanico = gruposUsuario.find(x => x.nombre == "Antipánico").contactos;
                          if(contactosAntipanico.length != 0){
                            for(let c = 0; c < contactosAntipanico.length; c++){
-                             this.sms.send('2996736141', 'http://ciudadmujer.fi.uncoma.edu.ar/antipanico/'+resp.coords.latitude+'/'+resp.coords.longitude);
+                             this.sms.send(contactosAntipanico[c].telefono, 'Estoy en peligro. Entra al siguiente enlace para conocer mi ubicacion actual: http://ciudadmujer.fi.uncoma.edu.ar/antipanico/'+resp.coords.latitude+'/'+resp.coords.longitude);
                            }
                            let toast = this.toastCtrl.create({
                              message: "Los mensajes fueron enviados con éxito",
